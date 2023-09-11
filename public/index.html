@@ -1,48 +1,74 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohid's Page</title>
     <style>
-      body {
-        background-color: lightyellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h5>Version 0.0.9</h5>
-        <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png" style="position:relative; left:925; top:0; width:50px; height:50px;"><br>
-    <h1 align="center">Mohids index.html</h1>
-    <ul>
+        body {
+            background-color: lightyellow;
+        }
+        
+        h1 {
+            text-align: center;
+        }
 
-    </ul>
+        #myImage01 {
+            position: relative;
+            left: 925px;
+            top: 0;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dropdown-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-container {
+            display: none;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h5>Version 0.1.0</h5>
+    <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png">
+    <h1>Mohid's index.html</h1>
     <hr>
     <h3>Files</h3>
     <ul>
-  
+        <!-- Add your list items here -->
 
-    
+        <!-- Add more list items as needed -->
+    </ul>
 
-</head>
-<body>
-  
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Dropdown button and container -->
+    <button class="dropdown-button" onclick="toggleDropdown()">Assignment Files</button>
+    <div class="dropdown-container" id="myDropdown">
+        <!-- Add your dropdown items here -->
+        <li><a href="work-not-screen-time-mohid.html">wnst</a></li>
+    </div>
 
-  
-<!-- Button to open the dropdown -->
-<button class="dropdown-button" onclick="toggleDropdown()">Assignment Files</button>
-
-<!-- Container for the dropdown -->
-<div class="dropdown-container" id="myDropdown">
-<li><a href="work-not-screen-time-mohid.html">wnst</a></li>
-
-</div>
-
-<script>
-    // Function to open/close the dropdown
-    function toggleDropdown() {
-        var dropdown = document.getElementById("myDropdown");
-        if (dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-        } else {
-            dropdown.style.display = "block";
+    <script>
+        // Function to open/close the dropdown
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
         }
-    }
-</script>
+    </script>
+</body>
+</html>
