@@ -21,6 +21,15 @@
             height: 50px;
         }
 
+        #myImageLink {
+            /* Add a hover effect */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #myImageLink:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+
         .dropdown-button {
             background-color: #3498db;
             color: white;
@@ -48,7 +57,12 @@
     <h5>Version 0.1.0</h5>
           <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/index.html">old index</a></li>
           <li><a href="https://github.com/dweebuh/gamedev2023mohid/tree/main">repository</a></li>
-    <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png">
+    
+    <!-- Wrap the image in an anchor tag and apply the hover effect -->
+    <a id="myImageLink" href="YOUR_IMAGE_LINK_HERE">
+        <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png" alt="My Image" width="50" height="50">
+    </a>
+    
     <h1>Mohid's index.html</h1>
     <hr>
     <h3>Files</h3>
@@ -70,8 +84,4 @@
         // Function to open/close the dropdown
         function toggleDropdown() {
             var dropdown = document.getElementById("myDropdown");
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-        }
-    </script>
-</body>
-</html>
+            dropdown.style.display = dropdown.style.display === "block" ?
