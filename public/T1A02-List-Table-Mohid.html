@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Lists and Tables</title>
-    <style></style>
-    <script></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        td img {
+            width: 100px; /* Set the width of the images */
+            height: auto; /* Automatically adjust the height to maintain aspect ratio */
+            cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+            transition: opacity 0.3s ease-in-out; /* Add a smooth transition for hover effect */
+        }
+
+        td img:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+    </style>
 </head>
 <body bgcolor="powderblue">
-    <h5>Version 0.0.7</h5>
+    <h5>Version 0.0.9</h5>
     <ul style="text-align: left; list-style-type: none;">
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
     </ul>
@@ -26,12 +50,12 @@
         </tr>
         <tr>
             <!-- Second Row: Table Data -->
-            <td><img src="https://mymodernmet.com/wp/wp-content/uploads/2017/10/highland-cattle-calves-12.jpg"></td>
+            <td><a href="YOUR_LINK_HERE"><img src="https://mymodernmet.com/wp/wp-content/uploads/2017/10/highland-cattle-calves-12.jpg" width="200" height="150"></a></td>
             <td>Fluffy Cow</td>
         </tr>
         <tr>
             <!-- Add more rows as needed -->
-            <td><img src="https://media.4-paws.org/3/e/5/6/3e56785d2a08c27be3ca72082c20fd0a4545586d/VIER%20PFOTEN_2015-04-27_010-1927x1333-1920x1328.jpg"></td>
+            <td><a href="YOUR_LINK_HERE"><img src="https://media.4-paws.org/3/e/5/6/3e56785d2a08c27be3ca72082c20fd0a4545586d/VIER%20PFOTEN_2015-04-27_010-1927x1333-1920x1328.jpg" width="200" height="150"></a></td>
             <td>Cow</td>
         </tr>
     </table><br>
