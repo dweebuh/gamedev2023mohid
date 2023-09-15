@@ -20,36 +20,70 @@
     </style>
 </head>
 <body>
-    <h5>Version 0.0.5</h5>
+    <h5>Version 0.0.7</h5>
     <ul>
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
         <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A03-Forms-Mohid.html">old</a></li>
     </ul>
     <h1>Start Here</h1>
 
-    <form>
-        <form id="registrationForm">
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-
+    <form id="registrationForm">
+        <table border="1" align="center">
+            <tr>
+                <td><label for="fullName">Full Name:</label></td>
+                <td><input type="text" id="fullName" name="fullName" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td><label for="confirmPassword">Confirm Password:</label></td>
+                <td><input type="password" id="confirmPassword" name="confirmPassword" required></td>
+            </tr>
+        </table>
         <button type="submit">Register</button><br>
     </form>
-        <div id="registrationMessage"></div>
+    <div id="registrationMessage"></div>
+
+    <fieldset>
+        <legend>Checkboxes:</legend>
+        <input type="checkbox" id="checkbox1">
+        <label for="checkbox1">Checkbox1</label><br>
+        <input type="checkbox" id="checkbox2">
+        <label for="checkbox2">Checkbox2</label><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>Radio Buttons:</legend>
+        <input type="radio" id="radio1" name="myRad01" value="">
+        <label for="radio1">Wow</label><br>
+        <input type="radio" id="radio2" name="myRad01" value="">
+        <label for="radio2">WOW</label><br>
+    </fieldset>
+
+    <input type="hidden"><br>
+    <input type="file"><br>
+    <input type="reset"><br>
+    <input type="submit"><br>
+
+    <button onclick="updateTextArea()">Click</button><br>
+
+    <label for="myArea01">Textarea:</label><br>
+    <textarea id="myArea01" cols="60" rows="5">This Works!</textarea><br>
+
+    <label for="mySelect01">Select Box:</label><br>
+    <select id="mySelect01" size="2" onchange="updateTextArea()">
+        <option value="myDog">Cat</option>
+        <option value="myCat">Dog</option>
+        <option value="myMouse">Mouse</option>
+    </select>
 
     <script>
-        function updateTextArea() {
-            // Your existing JavaScript function
-        }
-
         const registrationForm = document.getElementById('registrationForm');
         const registrationMessage = document.getElementById('registrationMessage');
 
@@ -70,46 +104,7 @@
             // For this example, we'll simply display a success message.
             registrationMessage.innerHTML = `Registration successful! Welcome, ${fullName}!`;
         });
-    </script>
 
-        <fieldset>
-            <legend>Checkboxes:</legend>
-            <input type="checkbox" id="checkbox1">
-            <label for="checkbox1">Checkbox1</label><br>
-            <input type="checkbox" id="checkbox2">
-            <label for="checkbox2">Checkbox2</label><br>
-        </fieldset>
-
-        <fieldset>
-            <legend>Radio Buttons:</legend>
-            <input type="radio" id="radio1" name="myRad01" value="">
-            <label for="radio1">Wow</label><br>
-            <input type="radio" id="radio2" name="myRad01" value="">
-            <label for="radio2">WOW</label><br>
-        </fieldset>
-
-        <input type="hidden"><br>
-        <input type="file"><br>
-        <input type="reset"><br>
-        <input type="submit"><br>
-
-        <button onclick="updateTextArea()">Click</button><br>
-
-        <label for="myArea01">Textarea:</label><br>
-        <textarea id="myArea01" cols="60" rows="5">This Works!</textarea><br>
-
-        <label for="mySelect01">Select Box:</label><br>
-        <select id="mySelect01" size="2" onchange="updateTextArea()">
-            <option value="myDog">Cat</option>
-            <option value="myCat">Dog</option>
-            <option value="myMouse">Mouse</option>
-        </select>
-    </form>
-
-
-
-
-    <script>
         function updateTextArea() {
             const selectBox = document.getElementById('mySelect01');
             const textArea = document.getElementById('myArea01');
