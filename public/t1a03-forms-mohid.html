@@ -12,4 +12,44 @@
         <li style="text-align: left; list-style-type: none;"><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
     
      <li style="text-align: center; list-style-type: none;"><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A04-Web-Basics-by-Mohid.html">old</a></li>
-    <h1 style="text-align: center;">Forms</h1>
+    <h1 style="text-align: center;">start here</h1>
+
+    
+
+    <form align="center">
+        Your Name:<input type="text" id="myText01" value="Your name"><br>
+        Checkboxes: <br>
+        Checkbox1:<input type="checkbox"><br>
+        Checkbox2:<input type="checkbox"><br>
+        random text:<br>
+            wow<input type="radio" name="myRad01" value=""> <br>
+            WOW <input type="radio" name="myRad01" value=""> <br>
+
+        hidden:<input type="hidden"><br>
+        File:<input type="file"><br>
+        Reset:<input type="reset"><br>
+        Submit:<input type="submit"><br>
+
+        Button: <input type="button" value="click" onclick="{
+            document.getElementById('myArea01').value = ':0'
+        }"><br>
+        Textarea:<br>
+        <textarea id="myArea01" cols="60" rows="5"> This Works!</textarea><br>
+
+        Select Box:<br>
+        <select id="mySelect01" size="2" onChange="{
+            document.getElementById('myArea01').value =  document.getElementById('mySelect01').value
+        }">
+
+        <option value='myDog'>Cat</option>
+        <option value='myCat'>Dog</option>
+        <option value='myMouse'>Mouse</option>
+    
+    </select>
+    </form>
+    
+     <script>
+
+     </script>   
+</body>
+</html>
