@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h5>Version 0.0.2</h5>
+    <h5>Version 0.0.5</h5>
     <ul>
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
         <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A03-Forms-Mohid.html">old</a></li>
@@ -43,6 +43,34 @@
 
         <button type="submit">Register</button><br>
     </form>
+        <div id="registrationMessage"></div>
+
+    <script>
+        function updateTextArea() {
+            // Your existing JavaScript function
+        }
+
+        const registrationForm = document.getElementById('registrationForm');
+        const registrationMessage = document.getElementById('registrationMessage');
+
+        registrationForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                registrationMessage.innerHTML = 'Passwords do not match.';
+                return;
+            }
+
+            // You can add code here to send the registration data to a server or perform any other necessary actions.
+            // For this example, we'll simply display a success message.
+            registrationMessage.innerHTML = `Registration successful! Welcome, ${fullName}!`;
+        });
+    </script>
 
         <fieldset>
             <legend>Checkboxes:</legend>
