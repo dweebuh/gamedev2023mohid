@@ -40,6 +40,57 @@
         <span>this is</span>
         <span>a span</span>
 
+            <button onclick="myFunction(0)">0. Pseudo Code</button>
+    <button onclick="myFunction(1)">1. Input/Output</button>
+    <button onclick="myFunction(2)">2. Variables</button>
+    <button onclick="myFunction(3)">3. Loops</button>
+    <button onclick="myFunction(4)">4. Decisions</button>
+    <button onclick="myFunction(5)">5. Functions</button>
+    <button onclick="myFunction(6)">6. Events</button>
+    <button onclick="myFunction(7)">7. Arrays</button>
+    <button onclick="myFunction(8)">8. Objects</button>
+    <button onclick="myFunction(9)">9. Classes</button>
+    <div id="bruh">...</div>
+
+
+            <script> 
+      var number
+      function myFunction(number) { 
+        switch(number){
+          case 0: 
+            document.getElementById('bruh').innerHTML = "Hello don\'t world"
+            break;
+          case 1:
+            document.getElementById('bruh').innerHTML = `Input sndsjdfaiksdfm <br> Output is...`
+            break;
+          case 2:
+            document.getElementById('bruh').innerHTML = `Variables are Containers for Storing Data <br><pre> x = 3   </pre>`
+            break;
+          case 3:
+            document.getElementById('bruh').innerHTML = `It Loops! <br><pre> for (let i = 0; i < 7; i++){ output }  </pre>`
+            break;
+          case 4:
+            document.getElementById('bruh').innerHTML = `Decisions use the if statement to make true/false variable decisions <br><pre> if (hour<18){greeting=\'good day\';}</pre>`
+            break;
+          case 5:
+            document.getElementById('bruh').innerHTML = `A function preforms a task when it is called <br><pre> function myFunction(){ Task }  </pre>`
+            break;
+          case 6:
+            document.getElementById('bruh').innerHTML = `Trigger code <br><pre> onClick(), onkeydown(), onload()  </pre>`
+            break;
+          case 7:
+            document.getElementById('bruh').innerHTML = `A list of variables <br><pre> const Shoes = ["Nike", "Jordan", "Converse"]  </pre>`
+            break;
+          case 8:
+            document.getElementById('bruh').innerHTML = `A variable with properties and methods <br><pre> const car = {type:"Batmobile", model:"cuh", color:"BLACK"};  </pre>`
+            break;
+          case 9:
+            document.getElementById('bruh').innerHTML = `Templates to create objects <br><pre> class Sports { <br> constructor(BallType, Rules) { <br> this.BallType=BallType <br> this.Rules=Rules } <br> }  </pre>`
+            break;
+        }
+      }
+    </script>
+
         
     </div>
 </body>
