@@ -8,6 +8,7 @@
         body {
             background-color: powderblue;
             text-align: center;
+            margin: 0; /* Reset default margin */
         }
         ul {
             list-style-type: none;
@@ -17,25 +18,33 @@
             text-align: left;
             margin: 10px;
         }
+        /* Improved styles for the bold text */
+        #myB1 {
+            color: #00ff00;
+            background-color: blue;
+        }
     </style>
 </head>
 <body>
     <h5>Version 0.0.2</h5>
     <ul>
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
-        <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A04-CSS.html">old</a></li>
+        <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A03-Forms-Mohid.html">old</a></li>
     </ul>
     <h1>Start Here</h1>
 
+    <!-- Improved button and textarea -->
+    <b id="myB1">This is bold</b>
+    <input type="button" value="Change" onclick="changeStyles()"><br>
+    <textarea style="width: 200px; height: 50px;">Advanced: See if you can move this textarea</textarea>
 
-}
-color: #00ff00;
-</pre><br>
-I do CSS inside the tag. It overpowers all other methods<br>
-<b>This is bold</b><br>
-<b id="myB1" style="color:#00ff00; background-color:blue; "> This is bold</b> <input type=button value-Change onclick="{
-document.getElementById('myB1').style.color = 'red'
-document.getElementById('myB1').style.backgroundColor = 'yellow'
-}"><br>
-<textarea style="position:relative; left: 0; top:0; width: 200; height:50; "> Advanced see if you move this textarea
-</textarea><br>
+    <script>
+        // JavaScript function to change styles
+        function changeStyles() {
+            var myB1 = document.getElementById('myB1');
+            myB1.style.color = 'red';
+            myB1.style.backgroundColor = 'yellow';
+        }
+    </script>
+</body>
+</html>
