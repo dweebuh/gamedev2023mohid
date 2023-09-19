@@ -9,6 +9,7 @@
             background-color: powderblue;
             text-align: center;
             margin: 0; /* Reset default margin */
+            font-family: Arial, sans-serif; /* Added a default font */
         }
         ul {
             list-style-type: none;
@@ -22,11 +23,21 @@
         #myB1 {
             color: #00ff00;
             background-color: blue;
+            padding: 5px 10px; /* Added padding for better button appearance */
+            border: none; /* Removed button border */
+            cursor: pointer; /* Added cursor pointer on hover */
+        }
+        /* Added a class for the textarea */
+        .custom-textarea {
+            width: 200px;
+            height: 50px;
+            resize: none; /* Prevent textarea from being resized */
+            padding: 5px; /* Added padding for better appearance */
         }
     </style>
 </head>
 <body>
-    <h5>Version 0.0.3</h5>
+    <h5>Version 0.0.4</h5>
     <ul>
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
         <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A04-CSS.html">old</a></li>
@@ -36,7 +47,7 @@
     <!-- Improved button and textarea -->
     <b id="myB1">This is bold</b>
     <input type="button" value="Change" onclick="changeStyles()"><br>
-    <textarea style="width: 200px; height: 50px;">Advanced: See if you can move this textarea</textarea>
+    <textarea class="custom-textarea">Advanced: See if you can move this textarea</textarea>
 
     <script>
         // JavaScript function to change styles
