@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
+    <title>Forms and Styles</title>
     <style>
         body {
             background-color: powderblue;
             text-align: center;
-            margin: 0; /* Reset default margin */
-            font-family: Arial, sans-serif; /* Added a default font */
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
         ul {
             list-style-type: none;
@@ -19,65 +19,77 @@
             text-align: left;
             margin: 10px;
         }
-        /* Improved styles for the bold text */
         #myB1 {
             color: #00ff00;
             background-color: blue;
-            padding: 5px 10px; /* Added padding for better button appearance */
-            border: none; /* Removed button border */
-            cursor: pointer; /* Added cursor pointer on hover */
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
         }
-        /* Added a class for the textarea */
         .custom-textarea {
             width: 200px;
             height: 50px;
-            resize: none; /* Prevent textarea from being resized */
-            padding: 5px; /* Added padding for better appearance */
+            resize: none;
+            padding: 5px;
+        }
+        div.polaroid {
+            width: 250px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto; /* Added margin to center the polaroid */
+        }
+        .polaroid img {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <h5>Version 0.0.5</h5>
+    <h5>Version 0.0.7</h5>
     <ul>
         <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
         <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A04-CSS.html">old</a></li>
     </ul>
     <h1>Start Here</h1>
-
-    <!-- Improved button and textarea -->
     <b id="myB1">This is bold</b>
     <input type="button" value="Change" onclick="changeStyles()"><br>
     <textarea class="custom-textarea">Advanced: See if you can move this textarea</textarea>
+    
+    <div class="polaroid">
+        <img src="https://cdn.theworldofchinese.com/media/images/fruit-hunter-yangxiaoyang.original.original.jpg" alt="Chinese Hunter">
+        <div class="container">
+            <p>Chinese Man</p>
+        </div>
+    </div>
+
+    <div>
+        <form action="/action_page.php">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="australia">Canada</option>
+                <option value="canada">USA</option>
+                <option value="usa">Australia</option>
+            </select>
+        
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
     <script>
-        // JavaScript function to change styles
         function changeStyles() {
             var myB1 = document.getElementById('myB1');
             myB1.style.color = 'red';
             myB1.style.backgroundColor = 'yellow';
         }
     </script>
-    
-    <style>
-div.polaroid {
-  width: 250px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-  image-align: center;
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Stack items vertically */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-}
-</style>
-
-<div class="polaroid">
-  <img src="https://cdn.theworldofchinese.com/media/images/fruit-hunter-yangxiaoyang.original.original.jpg" alt="Chinese Hunter" style="width:100%">
-  <div class="container">
-    <p>Chinese Man</p>
-  </div>
-</div>
-
-
 </body>
 </html>
