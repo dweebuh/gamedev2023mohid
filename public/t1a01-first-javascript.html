@@ -1,0 +1,27 @@
+<html>My Brother is 1 years old
+My Brother is 2 years old
+<head>
+    <link rel="stylesheet" href="GlobalCSS.css">
+    <style>
+    </style>
+</head>
+<body>
+    <script>
+        let myOutArray = [];
+
+        function myPrint(myVariable) {
+            let mySister;
+            for (let i = 1; i <= myVariable; i++) {
+                mySister = 'My Sister';
+                if (i <= 10) {
+                    mySister = 'My Brother';
+                }
+                myOutArray[i] = mySister + ' is ' + i + ' years old<br>';
+            }
+            document.write(myOutArray[1] + myOutArray[2]);
+        }
+
+        myPrint(18);
+    </script>
+</body>
+</html>
