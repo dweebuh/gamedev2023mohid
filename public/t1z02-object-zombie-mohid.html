@@ -1,22 +1,67 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-        <title>t1z02-object-zombie-mohid</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t1z02-object-zombie-mohid</title>
     <style>
         body {
             background-color: powderblue;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #nameInput {
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        #checkButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #checkButton:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <h5>Version 0.0.1</h5>
-        <li style="text-align: left; list-style-type: none;"><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
-    
-    <h1 style="text-align: center;">t1z02-object-zombie-mohid</h1>
+    <header>
+        <h1>Is <span id="name">Mohid</span> a Zombie?</h1>
+    </header>
 
-    Is <input type="text" value="Mohid"> a Zombie?<br>
-    <input type=button value="Check it" onclick="{
-        alert('YES')
-    }"><br>
-    <div id="myDiv01">...</div><br>
+    <section>
+        <input type="text" id="nameInput" value="Mohid">
+        <button id="checkButton">Check it</button>
+        <div id="result">...</div>
+    </section>
 
-
+    <script>
+        document.getElementById("checkButton").addEventListener("click", function() {
+            var nameInput = document.getElementById("nameInput").value;
+            var result = document.getElementById("result");
+            
+            if (nameInput.toLowerCase() === "mohid") {
+                result.textContent = "YES";
+            } else {
+                result.textContent = "NO";
+            }
+        });
+    </script>
+</body>
+</html>
