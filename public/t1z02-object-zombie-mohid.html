@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>t1z02-object-zombie-mohid</title>
+    <title>Is Mohid a Zombie?</title>
     <style>
         body {
-            background-color: powderblue;
-            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
         h1 {
-            text-align: center;
-            color: #333;
+            font-size: 28px;
         }
 
-        #nameInput {
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #nameSelect {
             padding: 10px;
             font-size: 18px;
+            margin-right: 10px;
         }
 
         #checkButton {
@@ -36,30 +60,32 @@
 
         #result {
             margin-top: 20px;
-            font-size: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <a id="myImageLink" href="https://github.com/hpssjellis/high-school-javascript-game-dev-assignment-images">
-        <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png" alt="My Image" width="50" height="50">
-    </a>
     <header>
         <h1>Is <span id="name">Mohid</span> a Zombie?</h1>
     </header>
 
     <section>            
-        <input type="text" id="nameInput" value="Mohid">
+        <select id="nameSelect">
+            <option value="Mohid">Mohid</option>
+            <option value="John">John</option>
+            <option value="Zombie">Lincoln</option>
+        </select>
         <button id="checkButton">Check it</button>
         <div id="result">...</div>
     </section>
 
     <script>
         document.getElementById("checkButton").addEventListener("click", function() {
-            var nameInput = document.getElementById("nameInput").value;
+            var nameSelect = document.getElementById("nameSelect");
+            var selectedName = nameSelect.options[nameSelect.selectedIndex].value;
             var result = document.getElementById("result");
             
-            if (nameInput.toLowerCase() === "mohid") {
+            if (selectedName.toLowerCase() === "zombie") {
                 result.textContent = "YES";
             } else {
                 result.textContent = "NO";
