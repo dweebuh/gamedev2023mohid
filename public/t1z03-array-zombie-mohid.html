@@ -1,21 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zombie Array</title>
     <style>
         body {
-            background-color: powderblue;
+            background-color: #1f1f1f;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #myDiv01 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h5>Version 0.0.2</h5>
-    <li style="text-align: left; list-style-type: none;"><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
-
-    <h1 style="text-align: center;">Zombie Array</h1>
+    <header>
+        <h1>Zombie Array</h1>
+    </header>
+    <div class="container">
+        <h5>Version 0.0.0</h5>
+        <nav>
+            <ul>
+                <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">Index</a></li>
+            </ul>
+        </nav>
+        <label for="mySelect01">Is
+            <select id="mySelect01" size="1" onchange="checkZombie()">
+                <option></option>
+                <option>Tommy</option>
+                <option>Kaydin</option>
+                <option>Mohid</option>
+            </select> a Zombie? Really!
+        </label>
+        <div id="myDiv01">...</div>s
+    </div>
 
     <script>
-        let myThingName = ['Tommy', 'Kaydin', 'Mohod'];
+        let myThingName = ['Tommy', 'Kaydin', 'Mohid'];
         let myThingZombie = [true, false, true];
 
         function checkZombie() {
@@ -31,14 +94,5 @@
             }
         }
     </script>
-
-    <label for="mySelect01">Is <select id="mySelect01" size="1" onchange="checkZombie()">
-        <option></option>
-        <option>Tommy</option>
-        <option>Kaydin</option>
-        <option>Mohod</option>
-    </select> a Zombie? Really!</label><br>
-
-    <div id="myDiv01">...</div><br>
 </body>
 </html>
