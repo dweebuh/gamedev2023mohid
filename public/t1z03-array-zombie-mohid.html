@@ -1,7 +1,7 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-        <title>Zombie Array</title>
+    <title>Zombie Array</title>
     <style>
         body {
             background-color: powderblue;
@@ -9,36 +9,36 @@
     </style>
 </head>
 <body>
-    <h5>Version 0.0.0</h5>
-        <li style="text-align: left; list-style-type: none;"><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
-    
+    <h5>Version 0.0.2</h5>
+    <li style="text-align: left; list-style-type: none;"><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
+
     <h1 style="text-align: center;">Zombie Array</h1>
 
-<script> 
+    <script>
+        let myThingName = ['Tommy', 'Kaydin', 'Mohod'];
+        let myThingZombie = [true, false, true];
 
-let myThingName = ['Tommy','Kaydin','Mohod']
-let myThingZombie = [true, false, true]
-
-
-</script>
-
-Is <select id="mySelect01" size=1 onChange"{
-        myInput = document.getElementById('mySelect01').value
-        for (myLoop=0; myLoop < 4; myLoop++){
-        if (myThingName[myLoop] == myInput){
-        if (myThingZombie[myLoop]{
-        document.getelementById('myDiv01').innerHTML = myInput + ' is a Zombie'
-        } else {
-         document.getElementById('myDiv01').innterHTML = myInput + ' is Not a Zombie
-
+        function checkZombie() {
+            let myInput = document.getElementById('mySelect01').value;
+            for (let myLoop = 0; myLoop < 3; myLoop++) {
+                if (myThingName[myLoop] === myInput) {
+                    if (myThingZombie[myLoop]) {
+                        document.getElementById('myDiv01').innerHTML = myInput + ' is a Zombie';
+                    } else {
+                        document.getElementById('myDiv01').innerHTML = myInput + ' is Not a Zombie';
+                    }
                 }
+            }
         }
-   }
-                }">
-                <option>
-                <option>Tommy
-                <option>Kaydin
-                <option>Mohod
-                </option>select> a Zombie? Really!<br>
+    </script>
 
-                <div id="myDiv01">...</div><br>
+    <label for="mySelect01">Is <select id="mySelect01" size="1" onchange="checkZombie()">
+        <option></option>
+        <option>Tommy</option>
+        <option>Kaydin</option>
+        <option>Mohod</option>
+    </select> a Zombie? Really!</label><br>
+
+    <div id="myDiv01">...</div><br>
+</body>
+</html>
