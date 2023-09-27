@@ -7,94 +7,125 @@
     <style>
         body {
             background-color: lightyellow;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
         }
-        
+
         h1 {
+            margin-top: 20px;
+            text-align: center;
+            color: #444;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
             text-align: center;
         }
 
-        #myImage01 {
-            position: relative;
-            left: 925px;
-            top: 0;
-            width: 50px;
-            height: 50px;
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #2980b9;
         }
 
         #myImageLink {
-            /* Add a hover effect */
-            transition: opacity 0.3s ease-in-out;
+            display: block;
         }
 
-        #myImageLink:hover {
-            opacity: 0.8; /* Reduce opacity on hover */
+        #myImage01 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #myImageLink:hover #myImage01 {
+            transform: scale(1.2);
         }
 
         .dropdown-button {
             background-color: #3498db;
             color: white;
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
+            margin-top: 20px;
         }
 
         .dropdown-container {
             display: none;
+            text-align: center;
         }
 
         .dropdown-item {
             padding: 10px;
-            text-decoration: none;
-            display: block;
         }
 
-        .dropdown-item:hover {
-            background-color: #2980b9;
+        .dropdown-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .dropdown-item a:hover {
+            color: #3498db;
         }
     </style>
 </head>
 <body>
-    <h5>Version 0.1.0</h5>
-          <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/index.html">old index</a></li>
-          <li><a href="https://github.com/dweebuh/gamedev2023mohid/tree/main">repository</a></li>
+    <header>
+        <h1>Mohid's Index</h1>
+    </header>
     
-    <!-- Wrap the image in an anchor tag and apply the hover effect -->
-    <a id="myImageLink" href="https://github.com/hpssjellis/high-school-javascript-game-dev-assignment-images">
-        <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png" alt="My Image" width="50" height="50">
-    </a>
-    
-    <h1>Mohid's index.html</h1>
-    <hr>
-    <h3>Files</h3>
-    <ul>
-        <!-- Add your list items here -->
-
-        <!-- Add more list items as needed -->
-    </ul>
-
-    <!-- Dropdown button and container -->
-    <button class="dropdown-button" onclick="toggleDropdown()">Assignment Files</button>
-    <div class="dropdown-container" id="myDropdown">
-        <!-- Add your dropdown items here -->
-        <li><a href="work-not-screen-time-mohid.html">work not screen time</a></li>
-        <li><a href="t1a01-basicwebpage-mohid">Basic Web Page</a></li>
-        <li><a href="T1A02-List-Table-Mohid.html">List and Tables</a></li>
-        <li><a href="t1a03-forms-mohid.html">Forms</a></li>
-        <li><a href="T1A04-CSS-Mohid.html">CSS</a></li>
-        <li><a href="t1a05-first-javascript.html">Javascript</a></li>
-        <li><a href="t1z02-object-zombie-mohid.html">Objects</a></li>
-        <li><a href="t1z03-array-zombie-mohid.html">Array</a></li>
-        
+    <div id="myImageLink">
+        <a href="https://github.com/hpssjellis/high-school-javascript-game-dev-assignment-images">
+            <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png" alt="My Image">
+        </a>
     </div>
 
-<script>
-    // Function to open/close the dropdown
-    function toggleDropdown() {
-        var dropdown = document.getElementById("myDropdown");
-        if (dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-        } else {
-            dropdown.style.display = "block";
+    <h2>Files</h2>
+    <ul>
+        <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/index.html">old index</a></li>
+        <li><a href="https://github.com/dweebuh/gamedev2023mohid/tree/main">repository</a></li>
+    </ul>
+
+    <button class="dropdown-button" onclick="toggleDropdown()">Assignment Files</button>
+    <div class="dropdown-container" id="myDropdown">
+        <ul>
+            <li class="dropdown-item"><a href="work-not-screen-time-mohid.html">work not screen time</a></li>
+            <li class="dropdown-item"><a href="t1a01-basicwebpage-mohid">Basic Web Page</a></li>
+            <li class="dropdown-item"><a href="T1A02-List-Table-Mohid.html">List and Tables</a></li>
+            <li class="dropdown-item"><a href="t1a03-forms-mohid.html">Forms</a></li>
+            <li class="dropdown-item"><a href="T1A04-CSS-Mohid.html">CSS</a></li>
+            <li class="dropdown-item"><a href="t1a05-first-javascript.html">Javascript</a></li>
+            <li class="dropdown-item"><a href="t1z02-object-zombie-mohid.html">Objects</a></li>
+            <li class="dropdown-item"><a href="t1z03-array-zombie-mohid.html">Array</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Function to open/close the dropdown
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
         }
-    }
-</script>
+    </script>
+</body>
+</html>
