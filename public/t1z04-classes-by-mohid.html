@@ -1,27 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classes</title>
+</head>
+<body>
+
 <h2 align=center>Classes</h2>
+
 <script>
-
-
 class myPerson {
   constructor(passName, passAge) {
     this.myName = passName;
     this.myAge = passAge;
   }
 
-  myShow(){
-    document.getElementById('myDiv01').innerHTML = 'hello' + this.myName + '. you are' + this.myAge + 'years old'<br>
-      }
+  myShow() {
+    document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '. You are ' + this.myAge + ' years old.';
+  }
+}
 
-} // end class myAnimal
-  
+// You need to instantiate an object of the class using the 'new' keyword.
+let myCharacter;
+
+function createMyPerson() {
+  myCharacter = new myPerson('Elon', 52);
+  myCharacter.myShow();
+}
 </script>
 
-<input type=button value="Class Person" onClick="{
-
-  myCharacter = myPerson('Elon', 52)
-  myCharacter.myShow()
-
-  }">
+<!-- Corrected the way to call the function and added a button to trigger it. -->
+<input type="button" value="Class Person" onClick="createMyPerson()">
 
 <div id="myDiv01">...</div>
 
+</body>
+</html>
