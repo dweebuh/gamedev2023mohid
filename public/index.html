@@ -5,15 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohid's Page</title>
     <style>
-        body {
+         body {
             background-color: lightyellow;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 50vh;
         }
+        
 
         h1 {
             margin-top: 20px;
@@ -43,6 +38,7 @@
 
         #myImageLink {
             display: block;
+            margin: 0 auto;
         }
 
         #myImage01 {
@@ -63,6 +59,8 @@
             border: none;
             cursor: pointer;
             margin-top: 20px;
+            display: block;
+            margin: 0 auto;
         }
 
         .dropdown-container {
@@ -83,11 +81,27 @@
         .dropdown-item a:hover {
             color: #3498db;
         }
+
+        /* Media Query for responsiveness */
+        @media screen and (max-width: 768px) {
+            header {
+                font-size: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            #myImage01 {
+                width: 80px;
+                height: 80px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Mohid's Index</h1>
+        <h1>Mohid's Page</h1>
     </header>
     
     <div id="myImageLink">
@@ -96,7 +110,7 @@
         </a>
     </div>
 
-    <h2>Files</h2>
+    <h1>Files</h1>
     <ul>
         <li><a href="https://dweebuh.github.io/gameDev2023-trash/public/index.html">old index</a></li>
         <li><a href="https://github.com/dweebuh/gamedev2023mohid/tree/main">repository</a></li>
