@@ -1,37 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Classes</title>
+  <title>Mohid Classes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      color: #333;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #myDiv01 {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
-<h2 align=center>Classes</h2>
+<div class="container">
+  <h2>Classes</h2>
 
-<script>
-class myPerson {
-  constructor(passName, passAge) {
-    this.myName = passName;
-    this.myAge = passAge;
-  }
+  <script>
+    class myPerson {
+      constructor(passName, passAge) {
+        this.myName = passName;
+        this.myAge = passAge;
+      }
 
-  myShow() {
-    document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '. You are ' + this.myAge + ' years old.';
-  }
-}
+      myShow() {
+        document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '. You are ' + this.myAge + ' years old.';
+      }
+    }
 
-// You need to instantiate an object of the class using the 'new' keyword.
-let myCharacter;
+    let myCharacter;
 
-function createMyPerson() {
-  myCharacter = new myPerson('Elon', 52);
-  myCharacter.myShow();
-}
-</script>
+    function createMyPerson() {
+      myCharacter = new myPerson('Elon', 52);
+      myCharacter.myShow();
+    }
+  </script>
 
-<!-- Corrected the way to call the function and added a button to trigger it. -->
-<input type="button" value="Class Person" onClick="createMyPerson()">
+  <button type="button" onclick="createMyPerson()">Create Person</button>
 
-<div id="myDiv01">...</div>
+  <div id="myDiv01">...</div>
+</div>
 
 </body>
 </html>
