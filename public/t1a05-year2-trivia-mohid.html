@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Trivia</title>
+    <style>
+        body {
+            background-color: powderblue;
+        }
+    </style>
+</head>
+<body>
+    <h5>Version 0.0.0</h5>
+    <ul style="text-align: left; list-style-type: none;">
+        <li><a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">index</a></li>
+        <li style="text-align: center; list-style-type: none;"><a href="https://dweebuh.github.io/gameDev2023-trash/public/T3A04-Web-Basics-by-Mohid.html">old</a></li>
+    </ul>
+    <h1 style="text-align: center;">Trivia</h1>
+
+    From <a href="https://opentdb.com/api_config.php">https://opentdb.com/api_config.php</a><br>
+
+    <input type="button" value="Trivia" onclick="{
+        async function myCall(){
+            const myData = await fetch('https://opentdb.com/api.php?amount=1&category=9&type=multiple');
+            const myTemp = await myData.json();
+            console.log(myTemp);
+            document.getElementById('myDiv01').innerHTML = 'myTemp.results[0].question: ' +
+                myTemp.results[0].question;
+            document.getElementById('myDiv02').innerHTML = JSON.stringify(myTemp, null, '<br>');
+        }
+        myCall();
+    }"><br><br>
+
+    <div id="myDiv01">...</div>
+    <hr>
+
+    <div id="myDiv02">...</div>
+</body>
+</html>
