@@ -1,1 +1,24 @@
+<h2>T1A09 Local Stroage by Mohid. Instructions:</h2> // Making a to-do list with local storage
 
+<body onload="{
+  myStorage = localStorage.getItem('myStoredText')
+  if(myStorage != null){
+  document.getElementById('myText1').value = myStorage
+  }
+}">
+
+  <body onunload="{
+ localstorage.setItem('myStoredText',document.getElementById('myText1').value)
+  }">
+
+    Text example: <input id="myText1" type=text size=70 value="" placeholder="To do list"><br>
+
+    <input type="button" value="Store Text" onClick="{
+      localStorage.setItem('myStoredText', document.getElelmentById('myText1').value)
+      alert(document.getElelmentById('myText1').value + 'Has been stored')
+      document.getElelmentById('myText1').value = ''
+      }">
+
+    <input type"button" value="Retrieve Text" onClick="{
+    document.getElelmentById('myText1').value = localStorage.getItem('myStoredText')
+    }">
