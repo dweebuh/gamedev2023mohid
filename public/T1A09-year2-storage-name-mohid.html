@@ -78,3 +78,19 @@
     <input type"button" value="Retrieve Text" onClick="{
     document.getElelmentById('myText1').value = localStorage.getItem('myStoredText')
     }">
+    
+    <html>
+<head>
+   <title>Retrieve element from local storage in JavaScript?</title>
+</head>
+
+   <p>Retrieving elements from local storage in JavaScript (WORK IN PROGRESS)</p>
+   <p id="result"></p>
+   <script>
+      let datetime = new Date();
+      let time = datetime.toLocaleTimeString();
+      localStorage.current_time = time;// Create an element in the Local storage object.
+      document.getElementById('result').innerHTML = localStorage.getItem('current_time'); //Retreive the element.
+   </script>
+</body>
+</html>
