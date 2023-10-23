@@ -5,6 +5,32 @@ Version 0.0.1
 <script>
   class myPerson {
     constructor(passName, passAge) {
-      this.myName = passName
+      this.myName = passName;
+      this.myAge = passAge;
+    }
+
+    myShow(){
+      document.getElelmentById('myDiv01').innerHTML = 'Hello'+ this.myName + '. You are' + this.myAge + ' years old<br>
+    }
+
+  } // end class myAnimal
       
 </script>
+
+<img id="myCharacter01" src="myImage01.jpg"  style="position:absolute; left:0px; top:0px; width:40px; heignt:30px; "
+  />
+
+<input type=button value=right onclick="{
+  my01 = document.getElementById('myCharacter01').style
+  my01.left = parseInt(my01.left) + 20
+document.getElementById('myDiv01').innerHTML = my01.left
+
+}">
+<input type=button value="make Class" onclick="{
+  myCharacter = new myPerson('Elon', 52)
+  myCharacter.myShow()
+}">
+
+<div id="myDiv01">...</div>
+
+  
