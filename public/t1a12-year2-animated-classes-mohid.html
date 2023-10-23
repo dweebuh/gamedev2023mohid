@@ -14,6 +14,7 @@ Version 0.0.1
     }
 
   } // end class myAnimal
+    
       
 </script>
 
@@ -33,4 +34,45 @@ document.getElementById('myDiv01').innerHTML = my01.left
 
 <div id="myDiv01">...</div>
 
+    <h2>Advanced</h2>
+    WASD<br>
+
+    <!-- Add an ID to the image for easier manipulation -->
+    <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png"><br>
+
+    <!-- Use JavaScript to handle keyboard input -->
+    <script>
+        // Variables to track the image's position
+        var image = document.getElementById('myImage01');
+        var leftPosition = 0;
+        var topPosition = 0;
+
+        // Add an event listener to handle keyboard input
+        document.addEventListener('keydown', function (event) {
+            switch (event.key) {
+                case 'w':
+                    // Move up
+                    topPosition -= 10; // You can adjust the value to control the distance
+                    break;
+                case 'a':
+                    // Move left
+                    leftPosition -= 10; // You can adjust the value to control the distance
+                    break;
+                case 's':
+                    // Move down
+                    topPosition += 10; // You can adjust the value to control the distance
+                    break;
+                case 'd':
+                    // Move right
+                    leftPosition += 10; // You can adjust the value to control the distance
+                    break;
+            }
+
+            // Update the image's position
+            image.style.left = leftPosition + 'px';
+            image.style.top = topPosition + 'px';
+        });
+    </script>
+</body>
+</html>
   
