@@ -1,86 +1,113 @@
-<script>
-
-class myAnimal {
-  constructor(passname, passAge) {
-  this.myName = passName;
- this.myAge = passAge;
-  }
-  myShow(){
-    document.getElelmentById('myDiv01').innerHTMl = 'Hello '+ this.myName+'<br>
-  }
-} // end class myANimal
-
-</script>
-
-Version 0.0.1
-<h2 align=center>t1a14-extend-class-by-mohid.html</h2>
-
-Extending a pre=existing Class<br>
-
-<h4> Example Class extend code</h4>
-<pre>
-
-  class myCat extends myAnimal 
-  myShow(){
-  document.getElementById('myDiv01').innerHTML = this.myName
-  }
-  }
-</pre>
-
-<h4> Example working classes code</h4>
-
-  <input type=button value="Example Class Set and Show Class Animal" onClick="{
-
-    myDog = new myAnimal('Snickers', 5)
-    myDog.myShow()
-
-    }">
-
-<h4> Example Extending Class Code</h4>
-Nothing: <input type=text id="myText01" value="Useless at the moment"><br>
-
-<input type=button value="Example Extend Class Animal" onClick="{
-
-  class myCat extends myAnimal {
-  myShow(){
-  document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat<br>'
-}
-  } // end extended class myCat
-
-  myPet = new myCat('Fluff', 14)
-  myPet.myShow()
-
-  }">
-
-<div id="myDiv01">...</div>
-
-You can try to extend this calss and make other classes or add more properties
-to the class or add more methods to the class.
-  
-
-</script>
-
-
+<!DOCTYPE html>
 <html>
+
 <head>
-<style>
-.city {
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #myDiv01 {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+    
+    .city {
   background-color: tomato;
   color: white;
   padding: 10px;
 }
-</style>
+  </style>
+
+  <script>
+    class myAnimal {
+      constructor(passName, passAge) {
+        this.myName = passName;
+        this.myAge = passAge;
+      }
+      myShow() {
+        document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '<br>';
+      }
+    } // end class myAnimal
+
+    class myCat extends myAnimal {
+      myShow() {
+        document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat<br>';
+      }
+    } // end extended class myCat
+  </script>
 </head>
+
 <body>
 
-<h2 class="city">London</h2>
-<p>London is the capital of England.</p>
+  <h2 align=center>Extended Classes</h2>
 
-<h2 class="city">Paris</h2>
-<p>Paris is the capital of France.</p>
+  <h4> Example Class extend code</h4>
+  <pre>
+    class myCat extends myAnimal {
+      myShow() {
+        document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat<br>';
+      }
+    }
+  </pre>
 
-<h2 class="city">Tokyo</h2>
-<p>Tokyo is the capital of Japan.</p>
+  <h4> Example working classes code</h4>
+  <input type=button value="Example Class Set and Show Class Animal" onClick="{
+    myDog = new myAnimal('Snickers', 5);
+    myDog.myShow();
+  }">
+
+  <h4> Example Extending Class Code</h4>
+  Nothing: <input type=text id="myText01" value="Useless at the moment"><br>
+  <input type=button value="Example Extend Class Animal" onClick="{
+    myPet = new myCat('Fluff', 14);
+    myPet.myShow();
+  }">
+
+  <div id="myDiv01">...</div>
+
+  <h4> More Cool Classes Code</h4>
+  <h2 class="city">London</h2>
+  <p>London is the capital of England.</p>
+
+  <h2 class="city">Paris</h2>
+  <p>Paris is the capital of France.</p>
+
+  <h2 class="city">Tokyo</h2>
+  <p>Tokyo is the capital of Japan.</p>
 
 </body>
+
 </html>
+
