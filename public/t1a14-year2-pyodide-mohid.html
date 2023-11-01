@@ -27,6 +27,7 @@
 
         #codeInput {
             width: 100%;
+            height: 100px; /* Adjust height as needed */
             padding: 10px;
             box-sizing: border-box;
             margin-bottom: 10px;
@@ -53,7 +54,11 @@
         <h1>T1A14 Pyodide Mohid</h1>
         <h2><a href="https://github.com/pyodide/pyodide">Pyodide</a>: Python with Javascript in the browser</h2>
 
-        <textarea id="codeInput" placeholder="Enter Python code here..."></textarea>
+        <textarea id="codeInput" placeholder="Enter Python code here...">def calculate_sum(a, b):
+    return a + b
+
+result = calculate_sum(10, 20)
+result</textarea>
 
         <button id="runButton" onclick="evaluatePython()">Run</button>
         <button id="checkButton" onclick="checkOutput()">Check</button>
