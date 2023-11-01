@@ -68,14 +68,14 @@
         const outputDiv = document.getElementById("outputDiv");
 
         async function main() {
-            pyodide = await loadPyodide();
+            pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/' });
             outputDiv.innerHTML = "Ready!<br><br>Enter your Python code above and click 'Run'.";
         }
 
         async function evaluatePython() {
             try {
                 const userCode = codeInput.value;
-                const result = pyodide.runPython(userCode);
+                const result = await pyodide.runPythonAsync(userCode);
                 displayOutput(result);
             } catch (error) {
                 displayOutput(error.replace(/\n/g, '<br>'));
@@ -83,7 +83,7 @@
         }
 
         function displayOutput(result) {
-            outputDiv.innerHTML = "<br><br>Your answer is: " + result + "<br>";
+            outputDiv.innerHTML += "<br><br>Your answer is: " + result + "<br>";
         }
 
         function checkOutput() {
