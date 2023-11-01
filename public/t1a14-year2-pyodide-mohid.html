@@ -1,56 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyodide Mohid</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
+        #container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+        #codeInput {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
 
-<h1 align=center>T1A14 Pyodide Mohid</h1>
-<h1 align=center> <a href="https://github.com/pyodide/pyodide">Pyodide</a>: Python with Javascript in the browser</h1>
+        #runButton, #checkButton {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
 
-Just enter some python code in the variable <b><i>myPython</i></b>, and resave this file to your own Github. Print() goes to the console.<br>
+        #outputDiv {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>T1A14 Pyodide Mohid</h1>
+        <h2><a href="https://github.com/pyodide/pyodide">Pyodide</a>: Python with Javascript in the browser</h2>
 
-<input type=button value = run onclick = "evaluatePython()"> <br>
+        <textarea id="codeInput" placeholder="Enter Python code here..."></textarea>
 
-<div  id="outputDiv" >...</div>
+        <button id="runButton" onclick="evaluatePython()">Run</button>
+        <button id="checkButton" onclick="checkOutput()">Check</button>
 
+        <div id="outputDiv">...</div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script>
+        let pyodide;
+        const codeInput = document.getElementById("codeInput");
+        const outputDiv = document.getElementById("outputDiv");
 
-<input type=button value=check onclick="{
-  let myMap = pyodide.globals.toJs
-  myOutput.innerHTML += JSON.stringify(myMap, null, '<br>')
-  console.log(myMap)
-}">
+        async function main() {
+            pyodide = await loadPyodide();
+            outputDiv.innerHTML = "Ready!<br><br>Enter your Python code above and click 'Run'.";
+        }
 
+        async function evaluatePython() {
+            try {
+                const userCode = codeInput.value;
+                const result = pyodide.runPython(userCode);
+                displayOutput(result);
+            } catch (error) {
+                displayOutput(error.replace(/\n/g, '<br>'));
+            }
+        }
 
+        function displayOutput(result) {
+            outputDiv.innerHTML = "<br><br>Your answer is: " + result + "<br>";
+        }
 
-<script>
-let pyodide
-const myOutput = document.getElementById("outputDiv");
-const myPython = `
-a = sum([1, 2, 3, 4, 5])
-print(a)
+        function checkOutput() {
+            let myMap = pyodide.globals.toJs();
+            outputDiv.innerHTML += "<br><br>" + JSON.stringify(myMap, null, 2).replace(/\n/g, '<br>');
+            console.log(myMap);
+        }
 
-
-`   // end all python code
-
-function addToOutput(myResult) {
-  myOutput.innerHTML += "<br><br>Your answer is: " + myResult + "<br>";
-}
-
-myOutput.innerHTML = "Initializing...<br>";
-// init Pyodide
-async function main() {
-  let pyodide = await loadPyodide();
-  myOutput.innerHTML += "Ready!<br> <br> Your code to run is:<br> >>>" + myPython.replace(/\n/g, '<br>') + "<br>";
-  return pyodide;
-}
-let pyodideReadyPromise = main();
-
-async function evaluatePython() {
-pyodide = await pyodideReadyPromise;
-try {
-  let myReturn = pyodide.runPython(myPython);
-  addToOutput(myReturn);
-} catch (err) {
-  addToOutput(err.replace(/\n/g, '<br>'));
-}
-}
-</script>
+        main();
+    </script>
+</body>
+</html>
