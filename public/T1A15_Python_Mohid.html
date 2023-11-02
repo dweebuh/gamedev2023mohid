@@ -1,65 +1,135 @@
-<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python in the Browser</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
-<h1 align=center>t1a12-year2-pyodide-fred.html</h1>
-<h3 align=center> <a href="https://github.com/pyodide/pyodide">Pyodide</a>: Python with Javascript in the browser</h3>
+        h1, h3 {
+            text-align: center;
+        }
 
-You can edit and change this code in the textarea but when it works, save it to the <i> myPython</i> variable in the code<br><br>
-Open Console Ctrl-Shift-i to see regular Print(a) statements.<br>
-Thanks: Tommy, Mohid, Luke, Trey, Jonathon, Giogio and Leander for helping to convert Python to the web.<br><br>
-myB: <input id="myNum01" type=number value="5" onChange="{myB = parseInt(this.value)}"><br>
-<textarea id="myArea01" rows=10 cols=70 NOWRAP onChange="{myPython = this.value}"></textarea><br>
+        #myNum01, #myArea01 {
+            margin-bottom: 10px;
+        }
 
-<input type=button value="Run" onclick = "{evaluatePython()}"> 
-<input type=button value="Clear" onclick = "{document.getElementById('myDiv01').innerHTML = ''}"> <br>
+        #myDiv01 {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
 
-<div  id="myDiv01" >...</div>
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python in the Browser</h1>
+    <h3><a href="https://github.com/pyodide/pyodide">Pyodide</a>: Python with Javascript in the browser</h3>
 
+    <p>You can edit and change this code in the textarea, but when it works, save it to the <i>myPython</i> variable in the code.</p>
+    <p>Open Console Ctrl-Shift-i to see regular Python <code>print</code> statements.</p>
 
+    <label for="myNum01">myB:</label>
+    <input id="myNum01" type="number" value="5" onChange="{myB = parseInt(this.value)}"><br>
 
+    <textarea id="myArea01" rows="10" cols="70" wrap="off" onChange="{myPython = this.value}"></textarea><br>
 
-<script>
-let myPython = `
+    <button onclick="{evaluatePython()}">Run</button>
+    <button onclick="{document.getElementById('myDiv01').innerHTML = ''}">Clear</button><br>
+
+    <div id="myDiv01">...</div>
+
+    <script>
+        let myPython = `
 from js import myB
+
+# Input
+user_input = int(input("Enter a number: "))
+print("You entered:", user_input)
+
+# Output
 a = sum([1, 2, 3, 4, 5])
-print(a)
-c = a + myB
-c   
+print("Sum of [1, 2, 3, 4, 5]:", a)
 
+# Array
+my_array = [i for i in range(1, user_input+1)]
+print("Array created using a list comprehension:", my_array)
+
+# Function
+def multiply_by_two(x):
+    return x * 2
+
+# Loop
+for num in my_array:
+    print("Number:", num, "Multiplied by two:", multiply_by_two(num))
+
+# Object
+class SampleObject:
+    def __init__(self, name):
+        self.name = name
+
+# Create an instance of the SampleObject
+my_object = SampleObject("Sample Instance")
+print("Object created with name:", my_object.name)
+
+# Decision
+if user_input > a:
+    result = "Your input is greater than the sum!"
+else:
+    result = "Your input is less than or equal to the sum!"
+
+result
 `    // End of Python code
-  
-// note the variable pyodide is returned by the pyodide main function
-document.getElementById("myArea01").value  = myPython
-const myOutput = document.getElementById("myDiv01");
-var myB = parseInt(document.getElementById("myNum01").value);   // note: let does not pass to Python
-myOutput.innerHTML = "Initializing...<br>";
-  
-// init Pyodide
-async function main() {
-  let pyodide = await loadPyodide();
-  myOutput.innerHTML += "Ready!<br>"
-  return pyodide;
-}
-let pyodideReadyPromise = main();
 
-async function evaluatePython() {
-    pyodide = await pyodideReadyPromise;
-  
-    myOutput.innerHTML += "Your code to run is:<br> >>>" + myPython.replace(/\n/g, '<br>') + "<br>";
-    try {
-        // Clear the captured output before running the code
-        captured_output = "";
+        // note the variable pyodide is returned by the pyodide main function
+        document.getElementById("myArea01").value  = myPython
+        const myOutput = document.getElementById("myDiv01");
+        var myB = parseInt(document.getElementById("myNum01").value);   // note: let does not pass to Python
+        myOutput.innerHTML = "Initializing...<br>";
 
-        // Run the Python code
-        let myReturn = pyodide.runPython(myPython);
-        myOutput.innerHTML += "Your answer is: " + myReturn + "<br>";
-        // Get the captured output
-        const myA = pyodide.globals.get("a");  
-        myOutput.innerHTML += "The Python variable 'a' available to Javascript by using: pyodide.globals.get(a) is : " + myA + "<br>";       
-        myOutput.innerHTML += "The javascript variable used in Python as myB is : " + myB + "<br>";
-    } catch (err) {
-        myOutput.innerHTML += err;
-    }
-}
+        // init Pyodide
+        async function main() {
+            try {
+                let pyodide = await loadPyodide();
+                myOutput.innerHTML += "Ready!<br>"
+                return pyodide;
+            } catch (err) {
+                myOutput.innerHTML += "Error initializing Pyodide: " + err;
+            }
+        }
 
+        let pyodideReadyPromise = main();
 
-</script>
+        async function evaluatePython() {
+            pyodide = await pyodideReadyPromise;
+
+            myOutput.innerHTML += "Your code to run is:<br> >>>" + myPython.replace(/\n/g, '<br>') + "<br>";
+            try {
+                // Clear the captured output before running the code
+                captured_output = "";
+
+                // Run the Python code
+                let myReturn = pyodide.runPython(myPython);
+                myOutput.innerHTML += "Your answer is: " + myReturn + "<br>";
+                // Get the captured output
+                const myA = pyodide.globals.get("a");  
+                myOutput.innerHTML += "The Python variable 'a' available to Javascript by using: pyodide.globals.get(a) is : " + myA + "<br>";       
+                myOutput.innerHTML += "The javascript variable used in Python as myB is : " + myB + "<br>";
+            } catch (err) {
+                myOutput.innerHTML += "Error running Python code: " + err;
+            }
+        }
+    </script>
+</body>
+</html>
