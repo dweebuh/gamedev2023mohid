@@ -1,8 +1,9 @@
-Version 0.0.1
-
-<h2 align=center>Animated Classes</h2>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Classes</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,87 +59,79 @@ Version 0.0.1
         #myDiv02 {
             margin-top: 20px;
         }
-        
-          class myPerson {
-    constructor(passName, passAge) {
-      this.myName = passName;
-      this.myAge = passAge;
-    }
 
-    myShow(){
-      document.getElelmentById('myDiv01').innerHTML = 'Hello'+ this.myName + '. You are' + this.myAge + ' years old<br>
-    }
-
-  } // end class myAnimal
-    
-      
-    </style> 
-
-<img id="myCharacter01" src="myImage01.jpg"  style="position:absolute; left:0px; top:0px; width:40px; heignt:30px; "
-  />
-
-<input type=button value=right onclick="{
-  my01 = document.getElementById('myCharacter01').style
-  my01.left = parseInt(my01.left) + 20
-document.getElementById('myDiv01').innerHTML = my01.left
-
-}">
-<input type=button value="make Class" onclick="{
-  myCharacter = new myPerson('Elon', 52)
-  myCharacter.myShow()
-}">
-
-<div id="myDiv01">...</div>
-<body>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Image Movement</title>
-    <style>
-      
-
-        #myImage01 {
-            position: relative;
+        #myCharacter01 {
+            position: absolute;
             left: 0;
             top: 0;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 30px;
         }
     </style>
 </head>
 <body>
-    <h2>Advanced</h2>
-    WASD<br>
+    <header>
+        <h2>Animated Classes</h2>
+    </header>
 
-    <!-- Add an ID to the image for easier manipulation -->
-    <img id="myImage01" src="https://user-images.githubusercontent.com/101647451/197572490-a8bdfe0f-7408-4734-b7f6-cf9640393bb6.png"><br>
+    <main>
+        <button onclick="moveImage()">Move Image</button>
+        <button onclick="createPerson()">Create Person</button>
+        <div id="myDiv01">...</div>
 
-    <!-- Use JavaScript to handle keyboard input -->
+        <h2>Advanced</h2>
+        Use WASD keys to move the image.<br>
+        <img id="myCharacter01" src="myImage01.jpg">
+    </main>
+
     <script>
-        // Variables to track the image's position
-        var image = document.getElementById('myImage01');
-        var leftPosition = 0;
-        var topPosition = 0;
+        // Animated class for a person
+        class MyPerson {
+            constructor(name, age) {
+                this.myName = name;
+                this.myAge = age;
+            }
 
-        // Add an event listener to handle keyboard input
+            showDetails() {
+                document.getElementById('myDiv01').innerHTML = `Hello ${this.myName}. You are ${this.myAge} years old`;
+            }
+        }
+
+        // Function to move the image using arrow keys
+        function moveImage() {
+            const myCharacter = document.getElementById('myCharacter01').style;
+            myCharacter.left = parseInt(myCharacter.left) + 20 + 'px';
+            document.getElementById('myDiv01').innerHTML = `Left position: ${myCharacter.left}`;
+        }
+
+        // Function to create a person using the MyPerson class
+        function createPerson() {
+            const myCharacter = new MyPerson('Elon', 52);
+            myCharacter.showDetails();
+        }
+
+        // Function to handle keyboard input for image movement
         document.addEventListener('keydown', function (event) {
+            const image = document.getElementById('myCharacter01');
+            let leftPosition = parseInt(image.style.left) || 0;
+            let topPosition = parseInt(image.style.top) || 0;
+
             switch (event.key) {
                 case 'w':
                     // Move up
-                    topPosition -= 10; // You can adjust the value to control the distance
+                    topPosition -= 10;
                     break;
                 case 'a':
                     // Move left
-                    leftPosition -= 10; // You can adjust the value to control the distance
+                    leftPosition -= 10;
                     break;
                 case 's':
                     // Move down
-                    topPosition += 10; // You can adjust the value to control the distance
+                    topPosition += 10;
                     break;
                 case 'd':
                     // Move right
-                    leftPosition += 10; // You can adjust the value to control the distance
+                    leftPosition += 10;
                     break;
             }
 
@@ -148,6 +141,4 @@ document.getElementById('myDiv01').innerHTML = my01.left
         });
     </script>
 </body>
-</html>   
-   
-   
+</html>
