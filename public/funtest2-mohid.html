@@ -1,1 +1,24 @@
+<h1 align=center>Funtest2-Mohid.html</h1>
+<body>
 
+<button onclick="displayNames()">Display Names</button>
+
+<div id="namesContainer"></div>
+
+<script>
+    function displayNames() {
+        var names = ["Eillis", "Tom", "Linoln", "Fred"];
+        var namesContainer = document.getElementById("namesContainer");
+
+        // Clear existing content
+        namesContainer.innerHTML = "";
+
+        // Display names in the div
+        for (var i = 0; i < names.length; i++) {
+            namesContainer.innerHTML += "<p>" + names[i] + "</p>";
+        }
+    }
+</script>
+
+</body>
+</html>
