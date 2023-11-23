@@ -1,25 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 20px;
+        }
 
-<h2>t2a09-local-storage-name by Fred. Instructions:</h2>
+        #myText1 {
+            width: 70%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
 
-<body onload="{
-   myStorage = localStorage.getItem('myStoredText')
-   if(myStorage  != null){
-      document.getElementById('myText1').value = myStorage 
-    }
-}">
+        input[type="button"] {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let myStorage = localStorage.getItem('myStoredText');
 
-<body onunload="{
-   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
-}">   
+            if (myStorage !== null) {
+                document.getElementById('myText1').value = myStorage;
+            }
+        });
 
-Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+        window.onunload = function() {
+            localStorage.setItem('myStoredText', document.getElementById('myText1').value);
+        };
 
-<input type="button" value="Store Text" onClick="{
-   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-   alert(document.getElementById('myText1').value + ' \nHas been stored')
-   document.getElementById('myText1').value = ''
-}">
+        function storeText() {
+            let textValue = document.getElementById('myText1').value;
 
-<input type="button" value="Retrieve Text" onClick="{
-   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
-}"> 
+            if (textValue.trim() !== '') {
+                localStorage.setItem('myStoredText', textValue);
+                alert(textValue + '\nHas been stored');
+                document.getElementById('myText1').value = '';
+            } else {
+                alert('Please enter some text to store.');
+            }
+        }
+
+        function retrieveText() {
+            document.getElementById('myText1').value = localStorage.getItem('myStoredText');
+        }
+    </script>
+</head>
+<body>
+    <h2>t2a09-local-storage-name by Fred</h2>
+
+    <label for="myText1">Text example:</label>
+    <input id="myText1" type="text" placeholder="Write here to store"><br>
+
+    <input type="button" value="Store Text" onclick="storeText()">
+    <input type="button" value="Retrieve Text" onclick="retrieveText()">
+</body>
+</html>
+
