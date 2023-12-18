@@ -1,19 +1,24 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>T4A05 Template with WASD and Arrow Keys</title>
-</head> 
+  <style>
+    #myBody {
+      background-repeat: repeat;
+      background-size: 80%;
+    }
+  </style>
+</head>
 
-<body id="myBody" style="background-repeat: repeat; background-size: 80%" background="Water Background.png" onkeydown="handleKeyPress(event)" onload="initialize()">
+<body id="myBody" background="WaterBackground.png" onload="initialize()">
 
-  <h1 align=center><font color=Black>WASD to MOVE</font></h1>
-    
-  <h1 align=center><font color=Black>GET TO THE START BUTTON</font></h1>
-    
+  <h1 align="center" style="color: black;">WASD to MOVE</h1>
+  <h1 align="center" style="color: black;">GET TO THE START BUTTON</h1>
+
   <img id="myImg01" src="Hook-v2.png.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;"> 
   <img id="myImg02" src="Portal.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
-  
+
   <script>
     let myGlobalX = 0;
     let myClock;
@@ -23,17 +28,23 @@
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
 
-      if (event.key === 'd' || event.key === 'ArrowRight') { // d or Right Arrow = go right
-        moveRight();
-      }
-      if (event.key === 's' || event.key === 'ArrowDown') { // s or Down Arrow = go down
-        moveDown();
-      }
-      if (event.key === 'w' || event.key === 'ArrowUp') { // w or Up Arrow = go up
-        moveUp();
-      }
-      if (event.key === 'a' || event.key === 'ArrowLeft') { // a or Left Arrow = go left
-        moveLeft();
+      switch (event.key) {
+        case 'd':
+        case 'ArrowRight':
+          moveRight();
+          break;
+        case 's':
+        case 'ArrowDown':
+          moveDown();
+          break;
+        case 'w':
+        case 'ArrowUp':
+          moveUp();
+          break;
+        case 'a':
+        case 'ArrowLeft':
+          moveLeft();
+          break;
       }
 
       myCheckHit();
@@ -63,8 +74,7 @@
       clearInterval(myClock);
       myClock = setInterval(function() {
         myGlobalX -= 5;
-        let myTemp = myGlobalX + 'px 0px';
-        document.getElementById('myBody').style.backgroundPosition = myTemp;
+        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
 
@@ -98,11 +108,10 @@
     function initialize() {
       document.addEventListener('keydown', handleKeyPress);
       document.addEventListener('keyup', handleKeyUp);
-      
+
       myClock = setInterval(function() {
         myGlobalX -= 5;
-        let myTemp = myGlobalX + 'px 0px';
-        document.getElementById('myBody').style.backgroundPosition = myTemp;
+        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
   </script>
