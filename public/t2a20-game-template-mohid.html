@@ -8,6 +8,13 @@
       background-repeat: repeat;
       background-size: 80%;
     }
+
+    .obstacle {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+    }
   </style>
 </head>
 
@@ -19,10 +26,15 @@
   <img id="myImg01" src="Hook-v2.png.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;"> 
   <img id="myImg02" src="Portal.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
 
+  <!-- Obstacles -->
+  <div class="obstacle" id="obstacle1" style="left: 300px; top: 100px;"></div>
+  <div class="obstacle" id="obstacle2" style="left: 600px; top: 250px;"></div>
+  <div class="obstacle" id="obstacle3" style="left: 900px; top: 400px;"></div>
+
   <script>
     let myGlobalX = 0;
     let myClock;
-    let myScore = 10;
+    let myScore = 0; // Initialize score
     let keysPressed = {};
 
     function handleKeyPress(event) {
@@ -98,11 +110,26 @@
 
       // Check if the player collides with the portal
       if (myHitOther('myImg01', 'myImg02')) {
-        document.getElementById('myText01').value = 'You hit the portal and you win the game!';
+        myScore += 10; // Increase score when reaching the portal
+        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
         alert('You Win, now go to the next level');
         document.getElementById('myImg01').style.left = '20px';
         location.href = 'Construct3Game/index.html';
       }
+
+      // Check if the player collides with obstacles
+      for (let i = 1; i <= 3; i++) {
+        if (myHitOther('myImg01', 'obstacle' + i)) {
+          myScore -= 5; // Decrease score when hitting an obstacle
+          document.getElementById('myText01').value = 'You hit an obstacle! Score: ' + myScore;
+          resetPlayerPosition();
+        }
+      }
+    }
+
+    function resetPlayerPosition() {
+      document.getElementById('myImg01').style.left = '50px';
+      document.getElementById('myImg01').style.top = '190px';
     }
 
     function initialize() {
@@ -117,3 +144,4 @@
   </script>
 </body>
 </html>
+
