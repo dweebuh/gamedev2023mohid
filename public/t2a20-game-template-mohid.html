@@ -32,115 +32,78 @@
   <div class="obstacle" id="obstacle3" style="left: 900px; top: 400px;"></div>
 
   <script>
-    let myGlobalX = 0;
-    let myClock;
-    let myScore = 0; // Initialize score
-    let keysPressed = {};
+function handleKeyPress(event) {
+  keysPressed[event.key] = true;
 
-    function handleKeyPress(event) {
-      keysPressed[event.key] = true;
+  switch (event.key) {
+    case 'd':
+    case 'ArrowRight':
+      moveRight();
+      break;
+    case 's':
+    case 'ArrowDown':
+      moveDown();
+      break;
+    case 'w':
+    case 'ArrowUp':
+      moveUp();
+      break;
+    case 'a':
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+  }
 
-      switch (event.key) {
-        case 'd':
-        case 'ArrowRight':
-          moveRight();
-          break;
-        case 's':
-        case 'ArrowDown':
-          moveDown();
-          break;
-        case 'w':
-        case 'ArrowUp':
-          moveUp();
-          break;
-        case 'a':
-        case 'ArrowLeft':
-          moveLeft();
-          break;
-      }
+  myCheckHit();
+  console.log('Checking Hit');
+}
 
-      myCheckHit();
+function handleKeyUp(event) {
+  delete keysPressed[event.key];
+}
+
+// Add this inside the myCheckHit function
+function myCheckHit() {
+  console.log('Checking Hit Function');
+  document.getElementById('myText01').value = myScore; // show the present score
+
+  // Check if the player collides with the portal
+  if (myHitOther('myImg01', 'myImg02')) {
+    myScore += 10; // Increase score when reaching the portal
+    document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+    alert('You Win, now go to the next level');
+    document.getElementById('myImg01').style.left = '20px';
+    location.href = 'Construct3Game/index.html';
+  }
+
+  // Check if the player collides with obstacles
+  for (let i = 1; i <= 3; i++) {
+    if (myHitOther('myImg01', 'obstacle' + i)) {
+      myScore -= 5; // Decrease score when hitting an obstacle
+      document.getElementById('myText01').value = 'You hit an obstacle! Score: ' + myScore;
+      resetPlayerPosition();
     }
+  }
+}
 
-    function handleKeyUp(event) {
-      delete keysPressed[event.key];
-    }
+// Add this inside the myHitOther function
+function myHitOther(my1, my2) {
+  let element1 = document.getElementById(my1);
+  let element2 = document.getElementById(my2);
 
-    function moveRight() {
-      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
-    }
+  let rect1 = element1.getBoundingClientRect();
+  let rect2 = element2.getBoundingClientRect();
 
-    function moveDown() {
-      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
-    }
+  console.log('Rect1:', rect1);
+  console.log('Rect2:', rect2);
 
-    function moveUp() {
-      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
-    }
-
-    function moveLeft() {
-      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
-    }
-
-    function startAutoBackground() {
-      clearInterval(myClock);
-      myClock = setInterval(function() {
-        myGlobalX -= 5;
-        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
-      }, 100);
-    }
-
-    function myHitOther(my1, my2) {
-      let element1 = document.getElementById(my1);
-      let element2 = document.getElementById(my2);
-
-      let rect1 = element1.getBoundingClientRect();
-      let rect2 = element2.getBoundingClientRect();
-
-      return (
-        rect1.right >= rect2.left &&
-        rect1.bottom >= rect2.top &&
-        rect1.left <= rect2.right &&
-        rect1.top <= rect2.bottom
-      );
-    }
-
-    function myCheckHit() {
-      document.getElementById('myText01').value = myScore; // show the present score
-
-      // Check if the player collides with the portal
-      if (myHitOther('myImg01', 'myImg02')) {
-        myScore += 10; // Increase score when reaching the portal
-        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
-        alert('You Win, now go to the next level');
-        document.getElementById('myImg01').style.left = '20px';
-        location.href = 'Construct3Game/index.html';
-      }
-
-      // Check if the player collides with obstacles
-      for (let i = 1; i <= 3; i++) {
-        if (myHitOther('myImg01', 'obstacle' + i)) {
-          myScore -= 5; // Decrease score when hitting an obstacle
-          document.getElementById('myText01').value = 'You hit an obstacle! Score: ' + myScore;
-          resetPlayerPosition();
-        }
-      }
-    }
-
-    function resetPlayerPosition() {
-      document.getElementById('myImg01').style.left = '50px';
-      document.getElementById('myImg01').style.top = '190px';
-    }
-
-    function initialize() {
-      document.addEventListener('keydown', handleKeyPress);
-      document.addEventListener('keyup', handleKeyUp);
-
-      myClock = setInterval(function() {
-        myGlobalX -= 5;
-        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
-      }, 100);
-    }
+  return (
+    rect1.right >= rect2.left &&
+    rect1.bottom >= rect2.top &&
+    rect1.left <= rect2.right &&
+    rect1.top <= rect2.bottom
+  );
+}
   </script>
 </body>
 </html>
