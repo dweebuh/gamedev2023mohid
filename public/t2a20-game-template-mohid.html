@@ -8,7 +8,6 @@
       background-repeat: repeat;
       background-size: 80%;
     }
-
     .obstacle {
       position: absolute;
       width: 50px;
@@ -17,29 +16,19 @@
     }
   </style>
 </head>
-
 <body id="myBody" background="WaterBackground.png" onload="initialize()">
-
   <h1 align="center" style="color: black;">WASD to MOVE</h1>
   <h1 align="center" style="color: black;">GET TO THE START BUTTON</h1>
-
   <img id="myImg01" src="Hook-v2.png.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;"> 
   <img id="myImg02" src="Portal.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
-
-  <!-- Obstacles -->
-  <div class="obstacle" id="obstacle1" style="left: 300px; top: 100px;"></div>
-  <div class="obstacle" id="obstacle2" style="left: 600px; top: 250px;"></div>
-  <div class="obstacle" id="obstacle3" style="left: 900px; top: 400px;"></div>
 
   <script>
     let myGlobalX = 0;
     let myClock;
     let myScore = 0; // Initialize score
     let keysPressed = {};
-
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
-
       switch (event.key) {
         case 'd':
         case 'ArrowRight':
@@ -58,30 +47,23 @@
           moveLeft();
           break;
       }
-
       myCheckHit();
     }
-
     function handleKeyUp(event) {
       delete keysPressed[event.key];
     }
-
     function moveRight() {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
     }
-
     function moveDown() {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
     }
-
     function moveUp() {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
     }
-
     function moveLeft() {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
     }
-
     function startAutoBackground() {
       clearInterval(myClock);
       myClock = setInterval(function() {
@@ -89,14 +71,11 @@
         document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
-
     function myHitOther(my1, my2) {
       let element1 = document.getElementById(my1);
       let element2 = document.getElementById(my2);
-
       let rect1 = element1.getBoundingClientRect();
       let rect2 = element2.getBoundingClientRect();
-
       return (
         rect1.right >= rect2.left &&
         rect1.bottom >= rect2.top &&
@@ -104,38 +83,22 @@
         rect1.top <= rect2.bottom
       );
     }
+if (myHitOther('myImg01', 'myImg02')) {
+  myScore += 10; // Increase score when reaching the portal
+  document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+  alert('You Win, now go to the next level');
+  document.getElementById('myImg01').style.left = '20px';
+  location.href = 'Construct3Game/index.html';
+}
 
-    function myCheckHit() {
-      document.getElementById('myText01').value = myScore; // show the present score
-
-      // Check if the player collides with the portal
-      if (myHitOther('myImg01', 'myImg02')) {
-        myScore += 10; // Increase score when reaching the portal
-        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
-        alert('You Win, now go to the next level');
-        document.getElementById('myImg01').style.left = '20px';
-        location.href = 'Construct3Game/index.html';
-      }
-      
-           // Check if the player collides with the Objects
-      if (myHitOther('myImg01', 'obstacle')) {
-        myScore += 10; // Increase score when reaching the portal
-        document.getElementById('myText01').value = 'You lose try again' + myScore;
-        alert('You Win, now go to the next level');
-        document.getElementById('myImg01').style.left = '20px';
-        location.href = '';
-      }
-
-  
-    function resetPlayerPosition() {
-      document.getElementById('myImg01').style.left = '50px';
-      document.getElementById('myImg01').style.top = '190px';
-    }
+function resetPlayerPosition() {
+  document.getElementById('myImg01').style.left = '50px';
+  document.getElementById('myImg01').style.top = '190px';
+}
 
     function initialize() {
       document.addEventListener('keydown', handleKeyPress);
       document.addEventListener('keyup', handleKeyUp);
-
       myClock = setInterval(function() {
         myGlobalX -= 5;
         document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
@@ -144,4 +107,3 @@
   </script>
 </body>
 </html>
-
