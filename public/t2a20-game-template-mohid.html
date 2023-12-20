@@ -20,16 +20,17 @@
   <h1 align="center" style="color: black;">WASD to MOVE</h1>
   <h1 align="center" style="color: black;">GET TO THE START BUTTON</h1>
   <img id="myImg01" src="Hook-v2.png.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;"> 
-  <img id="myImg02" src="Portal.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
-  <img id="fish1" src="fish1.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
-  <img id="fish2" src="fish2.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
-  <img id="fish3" src="fish3.png" style="position:absolute; width:500px; height:500px; left:1100px; top:155px;">
+  <img id="myImg02" src="Portal.png" style="position:absolute; width:500px; height:500px; left:100px; top:155px;">
+  <img id="fish1" src="fish1.png" style="position:absolute; width:100px; height:120px; left:110px; top:155px;">
+  <img id="fish2" src="fish2.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px;">
+  <img id="fish3" src="fish3.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px;">
 
   <script>
     let myGlobalX = 0;
     let myClock;
     let myScore = 0; // Initialize score
     let keysPressed = {};
+
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
       switch (event.key) {
@@ -52,21 +53,31 @@
       }
       myCheckHit();
     }
+
     function handleKeyUp(event) {
       delete keysPressed[event.key];
     }
+
     function moveRight() {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
+      console.log('Moving right');
     }
+
     function moveDown() {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
+      console.log('Moving down');
     }
+
     function moveUp() {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
+      console.log('Moving up');
     }
+
     function moveLeft() {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
+      console.log('Moving left');
     }
+
     function startAutoBackground() {
       clearInterval(myClock);
       myClock = setInterval(function() {
@@ -74,6 +85,7 @@
         document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
+
     function myHitOther(my1, my2) {
       let element1 = document.getElementById(my1);
       let element2 = document.getElementById(my2);
@@ -86,22 +98,40 @@
         rect1.top <= rect2.bottom
       );
     }
-if (myHitOther('myImg01', 'myImg02')) {
-  myScore += 10; // Increase score when reaching the portal
-  document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
-  alert('You Win, now go to the next level');
-  document.getElementById('myImg01').style.left = '20px';
-  location.href = 'Construct3Game/index.html';
-}
 
-function resetPlayerPosition() {
-  document.getElementById('myImg01').style.left = '50px';
-  document.getElementById('myImg01').style.top = '190px';
-}
+    function myCheckHit() {
+      console.log('Checking hit');
+      document.getElementById('myText01').value = myScore; // show the present score
+
+      // Check if the player collides with the portal
+      if (myHitOther('myImg01', 'myImg02')) {
+        myScore += 10; // Increase score when reaching the portal
+        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+        alert('You Win, now go to the next level');
+        document.getElementById('myImg01').style.left = '20px';
+        location.href = 'Construct3Game/index.html';
+      }
+
+      // Check if the player collides with obstacles
+      // Assuming you want to check for collisions with fish1, fish2, and fish3
+      for (let i = 1; i <= 3; i++) {
+        if (myHitOther('myImg01', 'fish' + i)) {
+          myScore -= 5; // Decrease score when hitting a fish
+          document.getElementById('myText01').value = 'You hit a fish! Score: ' + myScore;
+          resetPlayerPosition();
+        }
+      }
+    }
+
+    function resetPlayerPosition() {
+      document.getElementById('myImg01').style.left = '50px';
+      document.getElementById('myImg01').style.top = '190px';
+    }
 
     function initialize() {
       document.addEventListener('keydown', handleKeyPress);
       document.addEventListener('keyup', handleKeyUp);
+
       myClock = setInterval(function() {
         myGlobalX -= 5;
         document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
