@@ -9,21 +9,25 @@
       background-repeat: repeat-x;
       background-size: 80%;
     }
-    .obstacle {
-      position: absolute;a
-      width: 50px;
-      height: 50px;
-      background-color: red;
+    .coin {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: yellow;
     }
   </style>
 </head>
 <body id="myBody" onload="initialize()">
   <h1 align="center" style="color: black;">WASD to MOVE</h1>
-  <h1 align="center" style="color: black;">GET TO THE START BUTTON</h1>
+  <h1 align="center" style="color: black;">COLLECT COINS</h1>
   <input type="text" id="myText01" readonly>
   <img id="myImg01" src="Hookv4.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px; z-index: 1;"> 
   <img id="myImg02" src="start.png" style="position:absolute; width:250px; height:250px; left:100px; top:155px; z-index: 0;">
 
+  <!-- Add coin elements -->
+  <div class="coin" id="coin1" style="left: 150px; top: 200px;"></div>
+  <div class="coin" id="coin2" style="left: 250px; top: 300px;"></div>
+  <div class="coin" id="coin3" style="left: 350px; top: 400px;"></div>
 
   <script>
     let myGlobalX = 0;
@@ -110,14 +114,22 @@
         alert('You Win, now go to the next level');
         document.getElementById('myImg01').style.left = '20px';
         location.href = 'Construct3Game/index.html';
-      
+      }
+
+      // Check if the player collects coins
       for (let i = 1; i <= 3; i++) {
-        if (myHitOther('myImg01', 'fish' + i)) {
-          myScore -= 5; // Decrease score when hitting a fish
-          document.getElementById('myText01').value = 'You hit a fish! Score: ' + myScore;
-          resetPlayerPosition();
+        if (myHitOther('myImg01', 'coin' + i)) {
+          myScore += 5; // Increase score when collecting a coin
+          document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
+          resetCoinPosition(i);
         }
       }
+    }
+
+    function resetCoinPosition(coinNumber) {
+      // Reset the position of the collected coin
+      document.getElementById('coin' + coinNumber).style.left = '-50px';
+      document.getElementById('coin' + coinNumber).style.top = '-50px';
     }
 
     function resetPlayerPosition() {
