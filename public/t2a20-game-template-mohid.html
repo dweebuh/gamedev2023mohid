@@ -5,7 +5,8 @@
   <title>T4A05 Template with WASD and Arrow Keys</title>
   <style>
     #myBody {
-      background-repeat: repeat;
+      background-image: url('WaterBackground.png');
+      background-repeat: repeat-x;
       background-size: 80%;
     }
     .obstacle {
@@ -16,14 +17,15 @@
     }
   </style>
 </head>
-<body id="myBody" background="WaterBackground.png" onload="initialize()">
+<body id="myBody" onload="initialize()">
   <h1 align="center" style="color: black;">WASD to MOVE</h1>
   <h1 align="center" style="color: black;">GET TO THE START BUTTON</h1>
-  <img id="myImg01" src="Hookv4.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;"> 
-  <img id="myImg02" src="start.png" style="position:absolute; width:500px; height:500px; left:100px; top:155px;">
-  <img id="fish1" src="fish1.png" style="position:absolute; width:100px; height:120px; left:110px; top:155px;">
-  <img id="fish2" src="fish2.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px;">
-  <img id="fish3" src="fish3.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px;">
+  <input type="text" id="myText01" readonly>
+  <img id="myImg01" src="Hook-v2.png" style="position:absolute; width:100px; height:80px; left: 50px; top:190px; z-index: 1;"> 
+  <img id="myImg02" src="start.png" style="position:absolute; width:500px; height:500px; left:100px; top:155px; z-index: 0;">
+  <img id="fish1" src="fish1.png" style="position:absolute; width:100px; height:120px; left:110px; top:155px; z-index: 1;">
+  <img id="fish2" src="fish2.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px; z-index: 1;">
+  <img id="fish3" src="fish3.png" style="position:absolute; width:200px; height:120px; left:110px; top:155px; z-index: 1;">
 
   <script>
     let myGlobalX = 0;
@@ -92,10 +94,10 @@
       let rect1 = element1.getBoundingClientRect();
       let rect2 = element2.getBoundingClientRect();
       return (
-        rect1.right >= rect2.left &&
-        rect1.bottom >= rect2.top &&
-        rect1.left <= rect2.right &&
-        rect1.top <= rect2.bottom
+        rect1.right > rect2.left &&
+        rect1.bottom > rect2.top &&
+        rect1.left < rect2.right &&
+        rect1.top < rect2.bottom
       );
     }
 
