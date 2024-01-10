@@ -61,9 +61,9 @@
   <img id="myImg02" src="start.png">
 
   <!-- Add coin elements as images -->
-  <img class="coin" id="coin1" src="coin_image1.png" style="left: 350px; top: 500px;">
-  <img class="coin" id="coin2" src="coin_image2.png" style="left: 550px; top: 700px;">
-  <img class="coin" id="coin3" src="coin_image3.png" style="left: 350px; top: 900px;">
+  <img class="coin" id="coin1" src="coin_image1.png">
+  <img class="coin" id="coin2" src="coin_image2.png">
+  <img class="coin" id="coin3" src="coin_image3.png">
 
   <script>
     let myGlobalX = 0;
@@ -72,22 +72,22 @@
     let keysPressed = {};
 
     function handleKeyPress(event) {
-      keysPressed[event.key] = true;
-      switch (event.key) {
+      keysPressed[event.key.toLowerCase()] = true;
+      switch (event.key.toLowerCase()) {
         case 'd':
-        case 'ArrowRight':
+        case 'arrowright':
           moveRight();
           break;
         case 's':
-        case 'ArrowDown':
+        case 'arrowdown':
           moveDown();
           break;
         case 'w':
-        case 'ArrowUp':
+        case 'arrowup':
           moveUp();
           break;
         case 'a':
-        case 'ArrowLeft':
+        case 'arrowleft':
           moveLeft();
           break;
       }
@@ -95,7 +95,7 @@
     }
 
     function handleKeyUp(event) {
-      delete keysPressed[event.key];
+      delete keysPressed[event.key.toLowerCase()];
     }
 
     function moveRight() {
@@ -164,8 +164,19 @@
 
     function resetCoinPosition(coinNumber) {
       // Reset the position of the collected coin
-      document.getElementById('coin' + coinNumber).style.left = '-50px';
-      document.getElementById('coin' + coinNumber).style.top = '-50px';
+      let coin = document.getElementById('coin' + coinNumber);
+      coin.style.left = getRandomPositionX() + 'px';
+      coin.style.top = getRandomPositionY() + 'px';
+    }
+
+    function getRandomPositionX() {
+      // Generate a random X position within the visible screen area
+      return Math.floor(Math.random() * (window.innerWidth - 30));
+    }
+
+    function getRandomPositionY() {
+      // Generate a random Y position within the visible screen area
+      return Math.floor(Math.random() * (window.innerHeight - 30));
     }
 
     function resetPlayerPosition() {
@@ -181,6 +192,11 @@
         myGlobalX -= 5;
         document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
+
+      // Initial coin positions
+      resetCoinPosition(1);
+      resetCoinPosition(2);
+      resetCoinPosition(3);
     }
   </script>
 </body>
