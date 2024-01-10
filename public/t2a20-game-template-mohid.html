@@ -4,24 +4,61 @@
   <meta charset="UTF-8">
   <title>T4A05 Template with WASD and Arrow Keys</title>
   <style>
-    #myBody {
+    body {
+      margin: 0;
+      padding: 0;
       background-image: url('https://opengameart.org/sites/default/files/Preview_143.png');
       background-repeat: repeat-x;
       background-size: 120%;
+      font-family: Arial, sans-serif;
     }
+
+    #container {
+      position: relative;
+    }
+
     .coin {
       position: absolute;
       width: 30px;
       height: 30px;
     }
+
+    #myText01 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: none;
+      font-size: 16px;
+      padding: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #myImg01 {
+      position: absolute;
+      width: 5%;
+      left: 100px;
+      top: 350px;
+      z-index: 1;
+    }
+
+    #myImg02 {
+      position: absolute;
+      width: 25%;
+      height: 200px;
+      left: 1350px;
+      top: 355px;
+      z-index: 0;
+    }
   </style>
 </head>
-<body id="myBody" onload="initialize()">
+<body id="container" onload="initialize()">
   <h1 align="center" style="color: black;"></h1>
   <h1 align="center" style="color: black;"></h1>
   <input type="text" id="myText01" readonly>
-  <img id="myImg01" src="Hookv4.png" style="position:absolute; width:5%; left: 100px; top:350px; z-index: 1;"> 
-  <img id="myImg02" src="start.png" style="position:absolute; width:25%; height:200px; left:1350px; top:355px; z-index: 0;">
+  <img id="myImg01" src="Hookv4.png">
+  <img id="myImg02" src="start.png">
 
   <!-- Add coin elements as images -->
   <img class="coin" id="coin1" src="coin_image1.png" style="left: 350px; top: 500px;">
@@ -85,7 +122,7 @@
       clearInterval(myClock);
       myClock = setInterval(function() {
         myGlobalX -= 5;
-        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
+        document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
 
@@ -142,7 +179,7 @@
 
       myClock = setInterval(function() {
         myGlobalX -= 5;
-        document.getElementById('myBody').style.backgroundPosition = myGlobalX + 'px 0px';
+        document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
     }
   </script>
