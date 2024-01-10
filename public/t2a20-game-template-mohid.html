@@ -2,9 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>T4A05 Template with Mouse Cursor</title>
+  <title>T4A05 Template with WASD and Arrow Keys</title>
   <style>
-    /* ... (unchanged styles) ... */
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://opengameart.org/sites/default/files/Preview_143.png');
+      background-repeat: repeat-x;
+      background-size: 120%;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      position: relative;
+    }
+
+    .coin {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+    }
+
+    #myText01 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: none;
+      font-size: 16px;
+      padding: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #myImg01 {
+      position: absolute;
+      width: 5%;
+      left: 100px;
+      top: 350px;
+      z-index: 1;
+    }
+
+    #myImg02 {
+      position: absolute;
+      width: 25%;
+      height: 200px;
+      left: 1350px;
+      top: 355px;
+      z-index: 0;
+    }
   </style>
 </head>
 <body id="container" onload="initialize()">
@@ -23,16 +69,51 @@
     let myGlobalX = 0;
     let myClock;
     let myScore = 0; // Initialize score
+    let keysPressed = {};
 
-    function handleMouseMove(event) {
-      // Set the position of the hook to the mouse cursor
-      document.getElementById('myImg01').style.left = event.clientX - document.getElementById('myImg01').offsetWidth / 2 + 'px';
-      document.getElementById('myImg01').style.top = event.clientY - document.getElementById('myImg01').offsetHeight / 2 + 'px';
+    function handleKeyPress(event) {
+      keysPressed[event.key] = true;
+      movePlayer();
       myCheckHit();
     }
 
+    function handleKeyUp(event) {
+      keysPressed[event.key] = false;
+    }
+
+    function moveRight() {
+      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
+      console.log('Moving right');
+    }
+
+    function moveDown() {
+      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
+      console.log('Moving down');
+    }
+
+    function moveUp() {
+      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
+      console.log('Moving up');
+    }
+
+    function moveLeft() {
+      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
+      console.log('Moving left');
+    }
+
     function movePlayer() {
-      // No need to check keysPressed, just move the hook based on the mouse position
+      if (keysPressed['w'] || keysPressed['ArrowUp']) {
+        moveUp();
+      }
+      if (keysPressed['s'] || keysPressed['ArrowDown']) {
+        moveDown();
+      }
+      if (keysPressed['a'] || keysPressed['ArrowLeft']) {
+        moveLeft();
+      }
+      if (keysPressed['d'] || keysPressed['ArrowRight']) {
+        moveRight();
+      }
     }
 
     function startAutoBackground() {
@@ -43,10 +124,65 @@
       }, 100);
     }
 
-    // ... (unchanged functions) ...
+    function myHitOther(my1, my2) {
+      let element1 = document.getElementById(my1);
+      let element2 = document.getElementById(my2);
+      let rect1 = element1.getBoundingClientRect();
+      let rect2 = element2.getBoundingClientRect();
+      return (
+        rect1.right > rect2.left &&
+        rect1.bottom > rect2.top &&
+        rect1.left < rect2.right &&
+        rect1.top < rect2.bottom
+      );
+    }
+
+    function myCheckHit() {
+      console.log('Checking hit');
+      document.getElementById('myText01').value = myScore; // show the present score
+
+      // Check if the player collides with the portal
+      if (myHitOther('myImg01', 'myImg02')) {
+        myScore += 10; // Increase score when reaching the portal
+        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+        alert('You Win, now go to the next level');
+        document.getElementById('myImg01').style.left = '20px';
+        location.href = 'Construct3Game/index.html';
+      }
+
+      // Check if the player collects coins
+      for (let i = 1; i <= 3; i++) {
+        if (myHitOther('myImg01', 'coin' + i)) {
+          myScore += 5; // Increase score when collecting a coin
+          document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
+          resetCoinPosition(i);
+        }
+      }
+    }
+
+    function resetCoinPosition(coinNumber) {
+      // Reset the position of the collected coin
+      let coin = document.getElementById('coin' + coinNumber);
+      coin.style.left = getRandomPositionX() + 'px';
+      coin.style.top = getRandomPositionY() + 'px';
+    }
+
+    function getRandomPositionX() {
+      // Generate a random X position within the visible screen area
+      return Math.floor(Math.random() * (window.innerWidth - 30));
+    }
+
+    function getRandomPositionY() {
+      // Generate a random Y position within the visible screen area
+      return Math.floor(Math.random() * (window.innerHeight - 30));
+    }
+
+    function resetPlayerPosition() {
+      document.getElementById('myImg01').style.left = '50px';
+      document.getElementById('myImg01').style.top = '190px';
+    }
 
     function initialize() {
-      document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('keydown', handleKeyPress);
       document.addEventListener('keyup', handleKeyUp);
 
