@@ -120,7 +120,7 @@
 
     function startAutoBackground() {
       clearInterval(myClock);
-      myClock = setInterval(function() {
+      myClock = setInterval(function () {
         myGlobalX -= 5;
         document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
@@ -177,7 +177,7 @@
       document.addEventListener('keydown', handleKeyPress);
       document.addEventListener('keyup', handleKeyUp);
 
-      myClock = setInterval(function() {
+      myClock = setInterval(function () {
         myGlobalX -= 5;
         document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
