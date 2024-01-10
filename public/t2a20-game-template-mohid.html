@@ -73,12 +73,10 @@
 
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
-      movePlayer();
-      myCheckHit();
     }
 
     function handleKeyUp(event) {
-      delete keysPressed[event.key];
+      keysPressed[event.key] = false;
     }
 
     function moveRight() {
@@ -102,16 +100,16 @@
     }
 
     function movePlayer() {
-      if ('w' in keysPressed || 'ArrowUp' in keysPressed) {
+      if (keysPressed['w'] || keysPressed['ArrowUp']) {
         moveUp();
       }
-      if ('s' in keysPressed || 'ArrowDown' in keysPressed) {
+      if (keysPressed['s'] || keysPressed['ArrowDown']) {
         moveDown();
       }
-      if ('a' in keysPressed || 'ArrowLeft' in keysPressed) {
+      if (keysPressed['a'] || keysPressed['ArrowLeft']) {
         moveLeft();
       }
-      if ('d' in keysPressed || 'ArrowRight' in keysPressed) {
+      if (keysPressed['d'] || keysPressed['ArrowRight']) {
         moveRight();
       }
     }
