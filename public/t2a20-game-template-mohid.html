@@ -73,24 +73,7 @@
 
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
-      switch (event.key) {
-        case 'd':
-        case 'ArrowRight':
-          moveRight();
-          break;
-        case 's':
-        case 'ArrowDown':
-          moveDown();
-          break;
-        case 'w':
-        case 'ArrowUp':
-          moveUp();
-          break;
-        case 'a':
-        case 'ArrowLeft':
-          moveLeft();
-          break;
-      }
+      movePlayer();
       myCheckHit();
     }
 
@@ -119,7 +102,18 @@
     }
 
     function movePlayer() {
-      // Function to be added
+      if ('w' in keysPressed || 'ArrowUp' in keysPressed) {
+        moveUp();
+      }
+      if ('s' in keysPressed || 'ArrowDown' in keysPressed) {
+        moveDown();
+      }
+      if ('a' in keysPressed || 'ArrowLeft' in keysPressed) {
+        moveLeft();
+      }
+      if ('d' in keysPressed || 'ArrowRight' in keysPressed) {
+        moveRight();
+      }
     }
 
     function startAutoBackground() {
