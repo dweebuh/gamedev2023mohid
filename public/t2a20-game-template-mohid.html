@@ -35,14 +35,14 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
-#myImg01 {
-  position: absolute;
-  width: 50px;
-  left: 100px;
-  top: 350px;
-  z-index: 1;
-  border: 2px solid red; /* Add a border for better visibility */
-}
+    #myImg01 {
+      position: absolute;
+      width: 50px;
+      left: 100px;
+      top: 350px;
+      z-index: 1;
+      border: 2px solid red; /* Add a border for better visibility */
+    }
 
     #myImg02 {
       position: absolute;
@@ -75,7 +75,6 @@
   function handleKeyPress(event) {
     keysPressed[event.key] = true;
     console.log('Key pressed:', event.key);
-    movePlayer();
     myCheckHit();
   }
 
@@ -84,38 +83,22 @@
     console.log('Key released:', event.key);
   }
 
-  function moveRight() {
-    document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
-    console.log('Moving right');
-  }
-
-  function moveDown() {
-    document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
-    console.log('Moving down');
-  }
-
-  function moveUp() {
-    document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
-    console.log('Moving up');
-  }
-
-  function moveLeft() {
-    document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
-    console.log('Moving left');
-  }
-
   function movePlayer() {
     if (keysPressed['w'] || keysPressed['ArrowUp']) {
-      moveUp();
+      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
+      console.log('Moving up');
     }
     if (keysPressed['s'] || keysPressed['ArrowDown']) {
-      moveDown();
+      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
+      console.log('Moving down');
     }
     if (keysPressed['a'] || keysPressed['ArrowLeft']) {
-      moveLeft();
+      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
+      console.log('Moving left');
     }
     if (keysPressed['d'] || keysPressed['ArrowRight']) {
-      moveRight();
+      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
+      console.log('Moving right');
     }
   }
 
