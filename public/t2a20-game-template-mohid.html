@@ -66,33 +66,36 @@
   <img class="coin" id="coin3" src="coin_image3.png">
 
  <script>
-    let myGlobalX = 0;
+   let myGlobalX = 0;
     let myClock;
     let myScore = 0; // Initialize score
     let keysPressed = {};
 
     function handleKeyPress(event) {
-      keysPressed[event.key.toLowerCase()] = true;
+      keysPressed[event.key] = true;
+      switch (event.key) {
+        case 'd':
+        case 'ArrowRight':
+          moveRight();
+          break;
+        case 's':
+        case 'ArrowDown':
+          moveDown();
+          break;
+        case 'w':
+        case 'ArrowUp':
+          moveUp();
+          break;
+        case 'a':
+        case 'ArrowLeft':
+          moveLeft();
+          break;
+      }
       myCheckHit();
     }
 
     function handleKeyUp(event) {
-      delete keysPressed[event.key.toLowerCase()];
-    }
-
-    function movePlayer() {
-      if (keysPressed['d'] || keysPressed['arrowright']) {
-        moveRight();
-      }
-      if (keysPressed['s'] || keysPressed['arrowdown']) {
-        moveDown();
-      }
-      if (keysPressed['w'] || keysPressed['arrowup']) {
-        moveUp();
-      }
-      if (keysPressed['a'] || keysPressed['arrowleft']) {
-        moveLeft();
-      }
+      delete keysPressed[event.key];
     }
 
     function moveRight() {
