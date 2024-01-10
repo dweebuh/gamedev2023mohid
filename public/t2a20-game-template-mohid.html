@@ -73,6 +73,8 @@
 
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
+      movePlayer();
+      myCheckHit();
     }
 
     function handleKeyUp(event) {
