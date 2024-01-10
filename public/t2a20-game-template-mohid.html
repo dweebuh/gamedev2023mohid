@@ -65,7 +65,7 @@
   <img class="coin" id="coin2" src="coin_image2.png">
   <img class="coin" id="coin3" src="coin_image3.png">
 
-  <script>
+ <script>
     let myGlobalX = 0;
     let myClock;
     let myScore = 0; // Initialize score
@@ -73,29 +73,26 @@
 
     function handleKeyPress(event) {
       keysPressed[event.key.toLowerCase()] = true;
-      switch (event.key.toLowerCase()) {
-        case 'd':
-        case 'arrowright':
-          moveRight();
-          break;
-        case 's':
-        case 'arrowdown':
-          moveDown();
-          break;
-        case 'w':
-        case 'arrowup':
-          moveUp();
-          break;
-        case 'a':
-        case 'arrowleft':
-          moveLeft();
-          break;
-      }
       myCheckHit();
     }
 
     function handleKeyUp(event) {
       delete keysPressed[event.key.toLowerCase()];
+    }
+
+    function movePlayer() {
+      if (keysPressed['d'] || keysPressed['arrowright']) {
+        moveRight();
+      }
+      if (keysPressed['s'] || keysPressed['arrowdown']) {
+        moveDown();
+      }
+      if (keysPressed['w'] || keysPressed['arrowup']) {
+        moveUp();
+      }
+      if (keysPressed['a'] || keysPressed['arrowleft']) {
+        moveLeft();
+      }
     }
 
     function moveRight() {
@@ -189,6 +186,7 @@
       document.addEventListener('keyup', handleKeyUp);
 
       myClock = setInterval(function () {
+        movePlayer();
         myGlobalX -= 5;
         document.body.style.backgroundPosition = myGlobalX + 'px 0px';
       }, 100);
