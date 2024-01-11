@@ -35,31 +35,15 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
-    #myImg01 {
-      position: absolute;
-      width: 50px;
-      left: 100px;
-      top: 350px;
-      z-index: 1;
-      border: 2px solid red; /* Add a border for better visibility */
-    }
-
-    #myImg02 {
-      position: absolute;
-      width: 25%;
-      height: 200px;
-      left: 1350px;
-      top: 355px;
-      z-index: 0;
-    }
   </style>
 </head>
 <body id="container" onload="initialize()">
   <h1 align="center" style="color: black;"></h1>
   <h1 align="center" style="color: black;"></h1>
   <input type="text" id="myText01" readonly>
-  <img id="myImg01" src="Hookv4.png">
-  <img id="myImg02" src="start.png">
+<img id="myImg01" src="Hookv4.png" style="position:absolute; width:50px; left:100px; top:350px;">
+ <img id="myImg02" src="start.png" style="position:absolute; width:25%px; height:200px; left:1350px; top:355px;">
+
 
   <!-- Add coin elements as images -->
   <img class="coin" id="coin1" src="coin_image1.png">
