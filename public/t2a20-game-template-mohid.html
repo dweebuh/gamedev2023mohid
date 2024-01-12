@@ -157,7 +157,7 @@
 
     function getRandomPositionY() {
       // Generate a random Y position within the visible screen area
-      return Math.floor(Math.random() * (window.innerHeight - 30));
+      return Math.floor(Math.random() * (window.innerHeight - 30 - 30)) + 30; // Added an offset of 30 pixels
     }
 
     function resetPlayerPosition() {
