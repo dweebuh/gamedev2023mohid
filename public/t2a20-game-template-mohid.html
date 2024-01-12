@@ -132,29 +132,15 @@
         if (myHitOther('myImg01', 'coin' + i)) {
           myScore += 5; // Increase score when collecting a coin
           document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
-          resetCoinPosition(i);
+          removeCoin(i);
         }
       }
     }
 
-    function resetCoinPosition(coinNumber) {
-      // Get the coin element
+    function removeCoin(coinNumber) {
+      // Remove the collected coin from the DOM
       let coin = document.getElementById('coin' + coinNumber);
-
-      // Check if the coin is already collected
-      if (coin.style.display !== 'none') {
-        // Hide the collected coin
-        coin.style.display = 'none';
-
-        // Reset the position of the collected coin
-        coin.style.left = getRandomPositionX() + 'px';
-        coin.style.top = getRandomPositionY() + 'px';
-
-        // Show the coin after a delay (you can adjust the delay as needed)
-        setTimeout(function () {
-          coin.style.display = 'block';
-        }, 3000); // 3000 milliseconds (3 seconds) delay before showing the coin again
-      }
+      coin.parentNode.removeChild(coin);
     }
 
     function getRandomPositionX() {
