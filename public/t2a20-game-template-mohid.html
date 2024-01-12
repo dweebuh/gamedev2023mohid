@@ -139,6 +139,13 @@
     }
   }
 
+  function resetCoinPosition(coinNumber) {
+    // Reset the position of the collected coin
+    let coin = document.getElementById('coin' + coinNumber);
+    coin.style.left = getRandomPositionX() + 'px';
+    coin.style.top = getRandomPositionY() + 'px';
+  }
+
   function getRandomPositionX() {
     // Generate a random X position within the visible screen area
     return Math.floor(Math.random() * (window.innerWidth - 30));
