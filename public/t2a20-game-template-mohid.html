@@ -62,6 +62,7 @@
     let myClock;
     let myScore = 0; // Initialize score
     let keysPressed = {};
+    const requiredScore = 20; // Set the required score to enter the portal
 
     function handleKeyPress(event) {
       keysPressed[event.key] = true;
@@ -127,11 +128,17 @@
 
       // Check if the player collides with the portal
       if (myHitOther('myImg01', 'myImg02')) {
-        myScore += 10; // Increase score when reaching the portal
-        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
-        alert('You Win, now go to the next level');
-        document.getElementById('myImg01').style.left = '20px';
-        location.href = 'Construct3Game/index.html';
+        if (myScore >= requiredScore) {
+          // Player has enough score to enter the portal
+          document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+          alert('You Win, now go to the next level');
+          document.getElementById('myImg01').style.left = '20px';
+          location.href = 'Construct3Game/index.html';
+        } else {
+          // Player does not have enough score, reset the game
+          document.getElementById('myText01').value = 'Not enough score to enter the portal. Game reset.';
+          resetGame();
+        }
       }
 
       // Check if the player collects coins
@@ -157,12 +164,19 @@
 
     function getRandomPositionY() {
       // Generate a random Y position within the visible screen area
-      return Math.floor(Math.random() * (window.innerHeight - 30 - 30)) + 30; // Added an offset of 30 pixels
+      return Math.floor(Math.random() * (window.innerHeight - 30));
     }
 
     function resetPlayerPosition() {
       document.getElementById('myImg01').style.left = '50px';
       document.getElementById('myImg01').style.top = '190px';
+    }
+
+    function resetGame() {
+      // Reset player position, score, and coin positions
+      resetPlayerPosition();
+      myScore = 0;
+      setInitialCoinPositions();
     }
 
     function initialize() {
