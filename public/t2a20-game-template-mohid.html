@@ -34,7 +34,7 @@
       border-radius: 5px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
-    
+
     #myImg02 {
       position: absolute;
       width: 25%;
@@ -43,155 +43,150 @@
       top: 355px;
       z-index: 0;
     }
-    
   </style>
 </head>
 <body id="container" onload="initialize()">
   <h1 align="center" style="color: black;"></h1>
   <h1 align="center" style="color: black;"></h1>
   <input type="text" id="myText01" readonly>
-<img id="myImg01" src="Hookv4.png" style="position:absolute; width:50px; left:100px; top:350px;">
- <img id="myImg02" src="start.png" style="position:absolute; width:25%px; height:200px; left:1350px; top:355px;">
-
+  <img id="myImg01" src="Hookv4.png" style="position:absolute; width:50px; left:100px; top:350px;">
+  <img id="myImg02" src="start.png" style="position:absolute; width:25%px; height:200px; left:1350px; top:355px;">
 
   <!-- Add coin elements as images -->
   <img class="coin" id="coin1" src="coin_image1.png">
   <img class="coin" id="coin2" src="coin_image2.png">
   <img class="coin" id="coin3" src="coin_image3.png">
 
-<script>
-  let myGlobalX = 0;
-  let myClock;
-  let myScore = 0; // Initialize score
-  let keysPressed = {};
+  <script>
+    let myGlobalX = 0;
+    let myClock;
+    let myScore = 0; // Initialize score
+    let keysPressed = {};
 
-  function handleKeyPress(event) {
-    keysPressed[event.key] = true;
-    console.log('Key pressed:', event.key);
-    myCheckHit();
-  }
-
-  function handleKeyUp(event) {
-    keysPressed[event.key] = false;
-    console.log('Key released:', event.key);
-  }
-
-  function movePlayer() {
-    if (keysPressed['w'] || keysPressed['ArrowUp']) {
-      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
-      console.log('Moving up');
-    }
-    if (keysPressed['s'] || keysPressed['ArrowDown']) {
-      document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
-      console.log('Moving down');
-    }
-    if (keysPressed['a'] || keysPressed['ArrowLeft']) {
-      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
-      console.log('Moving left');
-    }
-    if (keysPressed['d'] || keysPressed['ArrowRight']) {
-      document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
-      console.log('Moving right');
-    }
-  }
-
-  function startAutoBackground() {
-    clearInterval(myClock);
-    myClock = setInterval(function () {
-      myGlobalX -= 5;
-      document.body.style.backgroundPosition = myGlobalX + 'px 0px';
-    }, 100);
-  }
-
-  function myHitOther(my1, my2) {
-    let element1 = document.getElementById(my1);
-    let element2 = document.getElementById(my2);
-    let rect1 = element1.getBoundingClientRect();
-    let rect2 = element2.getBoundingClientRect();
-    return (
-      rect1.right > rect2.left &&
-      rect1.bottom > rect2.top &&
-      rect1.left < rect2.right &&
-      rect1.top < rect2.bottom
-    );
-  }
-
-  function myCheckHit() {
-    console.log('Checking hit');
-    document.getElementById('myText01').value = myScore; // show the present score
-
-    // Check if the player collides with the portal
-    if (myHitOther('myImg01', 'myImg02')) {
-      myScore += 10; // Increase score when reaching the portal
-      document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
-      alert('You Win, now go to the next level');
-      document.getElementById('myImg01').style.left = '20px';
-      location.href = 'Construct3Game/index.html';
+    function handleKeyPress(event) {
+      keysPressed[event.key] = true;
+      console.log('Key pressed:', event.key);
+      myCheckHit();
     }
 
-    // Check if the player collects coins
-    for (let i = 1; i <= 3; i++) {
-      if (myHitOther('myImg01', 'coin' + i)) {
-        myScore += 5; // Increase score when collecting a coin
-        document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
-        resetCoinPosition(i);
+    function handleKeyUp(event) {
+      keysPressed[event.key] = false;
+      console.log('Key released:', event.key);
+    }
+
+    function movePlayer() {
+      if (keysPressed['w'] || keysPressed['ArrowUp']) {
+        document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
+        console.log('Moving up');
+      }
+      if (keysPressed['s'] || keysPressed['ArrowDown']) {
+        document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
+        console.log('Moving down');
+      }
+      if (keysPressed['a'] || keysPressed['ArrowLeft']) {
+        document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
+        console.log('Moving left');
+      }
+      if (keysPressed['d'] || keysPressed['ArrowRight']) {
+        document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
+        console.log('Moving right');
       }
     }
-  }
 
-function resetCoinPosition(coinNumber) {
-  // Get the coin element
-  let coin = document.getElementById('coin' + coinNumber);
+    function startAutoBackground() {
+      clearInterval(myClock);
+      myClock = setInterval(function () {
+        myGlobalX -= 5;
+        document.body.style.backgroundPosition = myGlobalX + 'px 0px';
+      }, 100);
+    }
 
-  // Check if the coin is already collected
-  if (coin.style.display !== 'none') {
-    // Reset the position of the collected coin
-    coin.style.left = getRandomPositionX() + 'px';
-    coin.style.top = getRandomPositionY() + 'px';
-  }
-}
+    function myHitOther(my1, my2) {
+      let element1 = document.getElementById(my1);
+      let element2 = document.getElementById(my2);
+      let rect1 = element1.getBoundingClientRect();
+      let rect2 = element2.getBoundingClientRect();
+      return (
+        rect1.right > rect2.left &&
+        rect1.bottom > rect2.top &&
+        rect1.left < rect2.right &&
+        rect1.top < rect2.bottom
+      );
+    }
 
-function getRandomPositionX() {
-  // Generate a random X position within the visible screen area
-  return Math.floor(Math.random() * (window.innerWidth - 30));
-}
+    function myCheckHit() {
+      console.log('Checking hit');
+      document.getElementById('myText01').value = myScore; // show the present score
 
-function getRandomPositionY() {
-  // Generate a random Y position within the visible screen area
-  return Math.floor(Math.random() * (window.innerHeight - 30));
-}
-  
+      // Check if the player collides with the portal
+      if (myHitOther('myImg01', 'myImg02')) {
+        myScore += 10; // Increase score when reaching the portal
+        document.getElementById('myText01').value = 'You hit the portal and you win the game! Score: ' + myScore;
+        alert('You Win, now go to the next level');
+        document.getElementById('myImg01').style.left = '20px';
+        location.href = 'Construct3Game/index.html';
+      }
 
-  function getRandomPositionX() {
-    // Generate a random X position within the visible screen area
-    return Math.floor(Math.random() * (window.innerWidth - 30));
-  }
+      // Check if the player collects coins
+      for (let i = 1; i <= 3; i++) {
+        if (myHitOther('myImg01', 'coin' + i)) {
+          myScore += 5; // Increase score when collecting a coin
+          document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
+          resetCoinPosition(i);
+        }
+      }
+    }
 
-  function getRandomPositionY() {
-    // Generate a random Y position within the visible screen area
-    return Math.floor(Math.random() * (window.innerHeight - 30));
-  }
+    function resetCoinPosition(coinNumber) {
+      // Get the coin element
+      let coin = document.getElementById('coin' + coinNumber);
 
-  function resetPlayerPosition() {
-    document.getElementById('myImg01').style.left = '50px';
-    document.getElementById('myImg01').style.top = '190px';
-  }
+      // Check if the coin is already collected
+      if (coin.style.display !== 'none') {
+        // Hide the collected coin
+        coin.style.display = 'none';
 
-  function initialize() {
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('keyup', handleKeyUp);
+        // Reset the position of the collected coin
+        coin.style.left = getRandomPositionX() + 'px';
+        coin.style.top = getRandomPositionY() + 'px';
 
-    myClock = setInterval(function () {
-      movePlayer();
-      myGlobalX -= 5;
-      document.body.style.backgroundPosition = myGlobalX + 'px 0px';
-    }, 100);
+        // Show the coin after a delay (you can adjust the delay as needed)
+        setTimeout(function () {
+          coin.style.display = 'block';
+        }, 3000); // 3000 milliseconds (3 seconds) delay before showing the coin again
+      }
+    }
 
-    // Initial coin positions
-    resetCoinPosition(1);
-    resetCoinPosition(2);
-    resetCoinPosition(3);
-  }
-</script>
+    function getRandomPositionX() {
+      // Generate a random X position within the visible screen area
+      return Math.floor(Math.random() * (window.innerWidth - 30));
+    }
+
+    function getRandomPositionY() {
+      // Generate a random Y position within the visible screen area
+      return Math.floor(Math.random() * (window.innerHeight - 30));
+    }
+
+    function resetPlayerPosition() {
+      document.getElementById('myImg01').style.left = '50px';
+      document.getElementById('myImg01').style.top = '190px';
+    }
+
+    function initialize() {
+      document.addEventListener('keydown', handleKeyPress);
+      document.addEventListener('keyup', handleKeyUp);
+
+      myClock = setInterval(function () {
+        movePlayer();
+        myGlobalX -= 5;
+        document.body.style.backgroundPosition = myGlobalX + 'px 0px';
+      }, 100);
+
+      // Initial coin positions
+      resetCoinPosition(1);
+      resetCoinPosition(2);
+      resetCoinPosition(3);
+    }
+  </script>
 </body>
 </html>
