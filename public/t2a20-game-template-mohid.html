@@ -140,7 +140,15 @@
   function removeCoin(coinNumber) {
     // Remove the collected coin from the DOM
     let coin = document.getElementById('coin' + coinNumber);
-    coin.parentNode.removeChild(coin);
+    coin.style.visibility = 'hidden';
+
+    // Check if all coins are collected
+    if (!document.getElementById('coin1').style.visibility &&
+        !document.getElementById('coin2').style.visibility &&
+        !document.getElementById('coin3').style.visibility) {
+      alert('All coins collected! Proceed to the next level.');
+      resetCoinPositions();
+    }
   }
 
   function getRandomPositionX() {
@@ -165,6 +173,14 @@
       coin.style.top = getRandomPositionY() + 'px';
       coin.style.visibility = 'visible';
     }
+  }
+
+  function resetCoinPositions() {
+    for (let i = 1; i <= 3; i++) {
+      let coin = document.getElementById('coin' + i);
+      coin.style.visibility = 'visible';
+    }
+    setInitialCoinPositions();
   }
 
   function initialize() {
