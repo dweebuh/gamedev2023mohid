@@ -120,6 +120,12 @@
     console.log('Checking hit');
     document.getElementById('myText01').value = myScore; // show the present score
 
+  // Your existing JavaScript code remains unchanged
+
+  function myCheckHit() {
+    console.log('Checking hit');
+    document.getElementById('myText01').value = myScore; // show the present score
+
     // Check if the player collides with the portal
     if (myHitOther('myImg01', 'myImg02')) {
       myScore += 10; // Increase score when reaching the portal
@@ -134,47 +140,19 @@
       if (myHitOther('myImg01', 'coin' + i)) {
         myScore += 5; // Increase score when collecting a coin
         document.getElementById('myText01').value = 'You collected a coin! Score: ' + myScore;
-        resetCoinPosition(i);
+        hideCoin(i);
       }
     }
   }
 
-  function resetCoinPosition(coinNumber) {
-    // Reset the position of the collected coin
+  function hideCoin(coinNumber) {
+    // Hide the collected coin
     let coin = document.getElementById('coin' + coinNumber);
-    coin.style.left = getRandomPositionX() + 'px';
-    coin.style.top = getRandomPositionY() + 'px';
+    coin.style.display = 'none';
   }
 
-  function getRandomPositionX() {
-    // Generate a random X position within the visible screen area
-    return Math.floor(Math.random() * (window.innerWidth - 30));
-  }
-
-  function getRandomPositionY() {
-    // Generate a random Y position within the visible screen area
-    return Math.floor(Math.random() * (window.innerHeight - 30));
-  }
-
-  function resetPlayerPosition() {
-    document.getElementById('myImg01').style.left = '50px';
-    document.getElementById('myImg01').style.top = '190px';
-  }
-
-  function initialize() {
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('keyup', handleKeyUp);
-
-    myClock = setInterval(function () {
-      movePlayer();
-      myGlobalX -= 5;
-      document.body.style.backgroundPosition = myGlobalX + 'px 0px';
-    }, 100);
-
-    // Initial coin positions
-    resetCoinPosition(1);
-    resetCoinPosition(2);
-    resetCoinPosition(3);
+  function resetCoinPosition(coinNumber) {
+    // Do nothing for resetting coin position
   }
 </script>
 </body>
