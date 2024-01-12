@@ -34,7 +34,7 @@
       border-radius: 5px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
-    
+
     #myImg02 {
       position: absolute;
       width: 25%;
@@ -43,16 +43,14 @@
       top: 355px;
       z-index: 0;
     }
-    
   </style>
 </head>
 <body id="container" onload="initialize()">
   <h1 align="center" style="color: black;"></h1>
   <h1 align="center" style="color: black;"></h1>
   <input type="text" id="myText01" readonly>
-<img id="myImg01" src="Hookv4.png" style="position:absolute; width:50px; left:100px; top:350px;">
- <img id="myImg02" src="start.png" style="position:absolute; width:25%px; height:200px; left:1350px; top:355px;">
-
+  <img id="myImg01" src="Hookv4.png" style="position:absolute; width:50px; left:100px; top:350px;">
+  <img id="myImg02" src="start.png" style="position:absolute; width:25%px; height:200px; left:1350px; top:355px;">
 
   <!-- Add coin elements as images -->
   <img class="coin" id="coin1" src="coin_image1.png">
@@ -61,46 +59,37 @@
 
 <script>
   let myGlobalX = 0;
-  let myClock;
   let myScore = 0; // Initialize score
   let keysPressed = {};
 
   function handleKeyPress(event) {
     keysPressed[event.key] = true;
-    console.log('Key pressed:', event.key);
     myCheckHit();
   }
 
   function handleKeyUp(event) {
     keysPressed[event.key] = false;
-    console.log('Key released:', event.key);
   }
 
   function movePlayer() {
     if (keysPressed['w'] || keysPressed['ArrowUp']) {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) - 10 + 'px';
-      console.log('Moving up');
     }
     if (keysPressed['s'] || keysPressed['ArrowDown']) {
       document.getElementById('myImg01').style.top = parseInt(document.getElementById('myImg01').style.top) + 10 + 'px';
-      console.log('Moving down');
     }
     if (keysPressed['a'] || keysPressed['ArrowLeft']) {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) - 10 + 'px';
-      console.log('Moving left');
     }
     if (keysPressed['d'] || keysPressed['ArrowRight']) {
       document.getElementById('myImg01').style.left = parseInt(document.getElementById('myImg01').style.left) + 10 + 'px';
-      console.log('Moving right');
     }
   }
 
   function startAutoBackground() {
-    clearInterval(myClock);
-    myClock = setInterval(function () {
-      myGlobalX -= 5;
-      document.body.style.backgroundPosition = myGlobalX + 'px 0px';
-    }, 100);
+    myGlobalX -= 5;
+    document.body.style.backgroundPosition = myGlobalX + 'px 0px';
+    requestAnimationFrame(startAutoBackground);
   }
 
   function myHitOther(my1, my2) {
@@ -117,7 +106,6 @@
   }
 
   function myCheckHit() {
-    console.log('Checking hit');
     document.getElementById('myText01').value = myScore; // show the present score
 
     // Check if the player collides with the portal
@@ -165,11 +153,7 @@
     document.addEventListener('keydown', handleKeyPress);
     document.addEventListener('keyup', handleKeyUp);
 
-    myClock = setInterval(function () {
-      movePlayer();
-      myGlobalX -= 5;
-      document.body.style.backgroundPosition = myGlobalX + 'px 0px';
-    }, 100);
+    startAutoBackground();
 
     // Initial coin positions
     resetCoinPosition(1);
