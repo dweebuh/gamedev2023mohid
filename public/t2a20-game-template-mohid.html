@@ -152,7 +152,7 @@
 
     function getRandomPositionX() {
       // Generate a random X position within the visible screen area
-      return Math.floor(Math.random() * (window.innerWidth - 30));
+      return Math.floor(Math.random() * (window.innerWidth - 30 - 150)) + 150; // Added an offset of 150 pixels
     }
 
     function getRandomPositionY() {
