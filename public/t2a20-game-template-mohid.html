@@ -139,12 +139,28 @@
     }
   }
 
-  function resetCoinPosition(coinNumber) {
+function resetCoinPosition(coinNumber) {
+  // Get the coin element
+  let coin = document.getElementById('coin' + coinNumber);
+
+  // Check if the coin is already collected
+  if (coin.style.display !== 'none') {
     // Reset the position of the collected coin
-    let coin = document.getElementById('coin' + coinNumber);
     coin.style.left = getRandomPositionX() + 'px';
     coin.style.top = getRandomPositionY() + 'px';
   }
+}
+
+function getRandomPositionX() {
+  // Generate a random X position within the visible screen area
+  return Math.floor(Math.random() * (window.innerWidth - 30));
+}
+
+function getRandomPositionY() {
+  // Generate a random Y position within the visible screen area
+  return Math.floor(Math.random() * (window.innerHeight - 30));
+}
+  
 
   function getRandomPositionX() {
     // Generate a random X position within the visible screen area
